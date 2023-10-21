@@ -1,0 +1,33 @@
+name: Deploy to DigitalOcean test10
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Restart app on droplet
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/mentors/apps
+            git pull
+            cd /root/mentors/apps/project-be
+            npm install
+            npm run build
+            pm2 restart be
+            cd..
+            cd /root/mentors/apps/project-ui
+            npm install
+            npm run build
+            pm2 restart my-vite-app
