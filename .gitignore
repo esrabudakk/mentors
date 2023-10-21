@@ -1,0 +1,5 @@
+project-apps/dist
+project-apps/node_modules
+
+project_ui/dist
+project_ui/node_modules
