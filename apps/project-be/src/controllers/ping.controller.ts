@@ -6,6 +6,8 @@ import {
   response,
   ResponseObject,
 } from '@loopback/rest';
+import {repository} from "@loopback/repository";
+import {UsersRepository} from "../repositories";
 
 /**
  * OpenAPI response for ping()
@@ -38,12 +40,15 @@ const PING_RESPONSE: ResponseObject = {
  * A simple controller to bounce back http requests
  */
 export class PingController {
-  constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
+  constructor(@inject(RestBindings.Http.REQUEST) private req: Request,
+              @repository(UsersRepository)
+  public usersRepo : UsersRepository) {}
 
   // Map to `GET /ping`
   @get('/ping')
   @response(200, PING_RESPONSE)
   ping(): object {
+
     // Reply with a greeting, the current time, the url, and request headers
     return {
       greeting: 'Hello from LoopBack',
@@ -51,5 +56,11 @@ export class PingController {
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
     };
+  }
+
+  @get('/users')
+  @response(200, PING_RESPONSE)
+  pinssg() {
+    return this.usersRepo.find();
   }
 }
