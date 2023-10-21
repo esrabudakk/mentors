@@ -26,7 +26,6 @@ jobs:
             npm install
             npm run build
             pm2 restart be
-            cd..
             cd /root/mentors/apps/project-ui
             npm install
             npm run build
