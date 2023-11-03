@@ -1,5 +1,5 @@
 import {ApplicationConfig, ProjectAppsApplication} from './application';
-
+const dotenv = require('dotenv').config();
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
