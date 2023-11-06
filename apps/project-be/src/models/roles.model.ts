@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
-export class Users extends Entity {
+@model()
+export class Roles extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -12,53 +12,14 @@ export class Users extends Entity {
   @property({
     type: 'string',
     required: true,
-    postgresql: {
-      columnName: "first_name"
-    }
   })
-  firstName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "last_name"
-    }
-  })
-  lastName: string;
+  roleName: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  username: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  status: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "about_message"
-    }
-  })
-  aboutMessage: string;
+  description: string;
 
   @property({
     type: 'date',
@@ -92,13 +53,14 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+  constructor(data?: Partial<Roles>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface RolesRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type RolesWithRelations = Roles & RolesRelations;

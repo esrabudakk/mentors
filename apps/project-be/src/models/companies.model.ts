@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model({settings: {strict: false}})
-export class Users extends Entity {
+export class Companies extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -13,52 +13,55 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "company_title"
     }
   })
-  firstName: string;
+  companyTitle: string;
 
   @property({
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "last_name"
+      columnName: "tax_number"
     }
   })
-  lastName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  username: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  status: string;
+  taxNumber: string;
 
   @property({
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "about_message"
+      columnName: "tax_office"
     }
   })
-  aboutMessage: string;
+  taxOffice: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  country: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  city: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  address: string;
+
+  @property({
+    type: 'number',
+    required: true,
+    postgresql: {
+      columnName: "official_user_id"
+    }
+  })
+  officialUserId: number;
 
   @property({
     type: 'date',
@@ -92,13 +95,15 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+
+  constructor(data?: Partial<Companies>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface CompaniesRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type CompaniesWithRelations = Companies & CompaniesRelations;

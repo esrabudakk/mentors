@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
-export class Users extends Entity {
+@model()
+export class Categories extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -13,52 +13,16 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "category_type"
     }
   })
-  firstName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "last_name"
-    }
-  })
-  lastName: string;
+  categoryType: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  username: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  status: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "about_message"
-    }
-  })
-  aboutMessage: string;
+  description: string;
 
   @property({
     type: 'date',
@@ -92,13 +56,14 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+  constructor(data?: Partial<Categories>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface CategoriesRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type CategoriesWithRelations = Categories & CategoriesRelations;
