@@ -1,7 +1,8 @@
 import {Entity, model, property} from '@loopback/repository';
+import {ModelStatus} from "./models-utils";
 
-@model()
-export class Consultant extends Entity {
+@model({name: 'consultants',settings: {strict: true}})
+export class Consultants extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -36,8 +37,9 @@ export class Consultant extends Entity {
   @property({
     type: 'string',
     required: true,
+    default: ModelStatus.ACTIVE,
   })
-  status: string;
+  status: ModelStatus;
 
   @property({
     type: 'number',
@@ -81,13 +83,13 @@ export class Consultant extends Entity {
   updatedBy?: number;
 
 
-  constructor(data?: Partial<Consultant>) {
+  constructor(data?: Partial<Consultants>) {
     super(data);
   }
 }
 
-export interface ConsultantRelations {
+export interface ConsultantsRelations {
   // describe navigational properties here
 }
 
-export type ConsultantWithRelations = Consultant & ConsultantRelations;
+export type ConsultantsWithRelations = Consultants & ConsultantsRelations;

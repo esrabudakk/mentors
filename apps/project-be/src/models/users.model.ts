@@ -1,6 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
+import {ModelStatus} from "./models-utils";
 
-@model({settings: {strict: false}})
+@model({name: 'users',settings: {strict: true}})
 export class Users extends Entity {
   @property({
     type: 'number',
@@ -48,8 +49,9 @@ export class Users extends Entity {
   @property({
     type: 'string',
     required: true,
+    default: ModelStatus.ACTIVE,
   })
-  status: string;
+  status: ModelStatus;
 
   @property({
     type: 'string',

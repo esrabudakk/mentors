@@ -3,7 +3,7 @@ export * from './users.model';
 export * from './advertisements.model';
 export * from './companies.model';
 export * from './roles.model';
-export * from './consultant.model';
+export * from './consultants.model';
 export * from './permissions.model';
 export * from './categories.model';
 export * from './user-roles.model';

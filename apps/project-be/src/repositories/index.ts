@@ -2,7 +2,7 @@ export * from './users.repository';
 export * from './advertisements.repository';
 export * from './categories.repository';
 export * from './companies.repository';
-export * from './consultant.repository';
+export * from './consultants.repository';
 export * from './permissions.repository';
 export * from './roles.repository';
 export * from './user-roles.repository';

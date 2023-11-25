@@ -1,6 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
+import {ModelStatus} from "./models-utils";
 
-@model()
+@model({name: 'categories',settings: {strict: true}})
 export class Categories extends Entity {
   @property({
     type: 'number',
@@ -23,6 +24,13 @@ export class Categories extends Entity {
     required: true,
   })
   description: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    default: ModelStatus.ACTIVE,
+  })
+  status: ModelStatus;
 
   @property({
     type: 'date',

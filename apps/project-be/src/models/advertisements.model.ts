@@ -1,6 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
+import {ModelStatus} from "./models-utils";
 
-@model({settings: {strict: false}})
+@model({name: 'advertisements',settings: {strict: true}})
 export class Advertisements extends Entity {
   @property({
     type: 'number',
@@ -39,8 +40,9 @@ export class Advertisements extends Entity {
   @property({
     type: 'string',
     required: true,
+    default: ModelStatus.ACTIVE,
   })
-  status: string;
+  status: ModelStatus;
 
   @property({
     type: 'boolean',

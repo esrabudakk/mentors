@@ -1,6 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({name: 'roles',settings: {strict: true}})
 export class Roles extends Entity {
   @property({
     type: 'number',
