@@ -29,6 +29,6 @@ jobs:
             npm run build
             pm2 restart be
             cd /root/mentors/apps/project-ui
-            npm install
-            npm run build
+            yarn
+            yarn build
             pm2 restart my-vite-app
