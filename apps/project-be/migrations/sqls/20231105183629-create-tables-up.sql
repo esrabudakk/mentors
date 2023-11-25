@@ -100,30 +100,30 @@ CREATE TABLE user_roles (
 );
 
 ALTER TABLE companies ADD FOREIGN KEY (official_user_id) REFERENCES users (id);
-CREATE INDEX ix_companies_official_user_id ON public.users(official_user_id);
+CREATE INDEX ix_companies_official_user_id ON public.companies(official_user_id);
 
 ALTER TABLE consultants ADD FOREIGN KEY (user_id) REFERENCES users (id);
-CREATE INDEX ix_consultants_user_id ON public.users(user_id);
+CREATE INDEX ix_consultants_user_id ON public.consultants(user_id);
 
 
 ALTER TABLE advertisements ADD FOREIGN KEY (user_id) REFERENCES users (id);
-CREATE INDEX ix_advertisements_user_id ON public.users(user_id);
+CREATE INDEX ix_advertisements_user_id ON public.advertisements(user_id);
 
 
 ALTER TABLE advertisements ADD FOREIGN KEY (category_id) REFERENCES categories (id);
-CREATE INDEX ix_advertisements_category_id ON public.categories(category_id);
+CREATE INDEX ix_advertisements_category_id ON public.advertisements(category_id);
 
 
 ALTER TABLE permissions ADD FOREIGN KEY (role_id) REFERENCES roles (id);
-CREATE INDEX ix_permissions_role_id ON public.roles(role_id);
+CREATE INDEX ix_permissions_role_id ON public.permissions(role_id);
 
 
 ALTER TABLE user_roles ADD FOREIGN KEY (role_id) REFERENCES roles (id);
-CREATE INDEX ix_user_roles_role_id ON public.roles(role_id);
+CREATE INDEX ix_user_roles_role_id ON public.user_roles(role_id);
 
 
 ALTER TABLE user_roles ADD FOREIGN KEY (user_id) REFERENCES users (id);
-CREATE INDEX ix_user_roles_user_id ON public.users(user_id);
+CREATE INDEX ix_user_roles_user_id ON public.user_roles(user_id);
 
 CREATE UNIQUE INDEX uix_lower_users_username ON public.users(lower(username));
 CREATE UNIQUE INDEX uix_lower_users_email ON public.users(lower(email));

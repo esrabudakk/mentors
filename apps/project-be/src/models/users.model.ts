@@ -1,6 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
+@model({name: 'users', settings: {strict: true}})
 export class Users extends Entity {
   @property({
     type: 'number',
@@ -11,14 +11,69 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
+    required: true
   })
-  name?: string;
+  first_name: string;
 
-  // Define well-known properties here
+  @property({
+    type: 'string',
+    required: true
+  })
+  last_name: string;
 
-  // Indexer property to allow additional data
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+  @property({
+    type: 'string',
+    required: true
+  })
+  username: string;
+
+  @property({
+    type: 'string',
+    required: true
+  })
+  email: string;
+
+  @property({
+    type: 'string',
+    required: true
+  })
+  phone: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    jsonSchema: {
+      enum: ['ACTIVE', 'PASSIVE']
+    }
+  })
+  status: string;
+
+  @property({
+    type: 'string',
+    required: true
+  })
+  about_message: string;
+
+  @property({
+    type: 'date',
+  })
+  created_at?: string;
+
+  @property({
+    type: 'number',
+  })
+  created_by?: number;
+
+  @property({
+    type: 'date',
+  })
+  updated_at?: string;
+
+  @property({
+    type: 'number',
+  })
+  updated_by?: number;
+
 
   constructor(data?: Partial<Users>) {
     super(data);
