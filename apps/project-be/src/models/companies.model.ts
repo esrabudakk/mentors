@@ -1,8 +1,8 @@
 import {Entity, model, property} from '@loopback/repository';
 import {ModelStatus} from "./models-utils";
 
-@model({name: 'users',settings: {strict: true}})
-export class Users extends Entity {
+@model({name: 'companies',settings: {strict: true}})
+export class Companies extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -14,37 +14,55 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "company_title"
     }
   })
-  firstName: string;
+  companyTitle: string;
 
   @property({
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "last_name"
+      columnName: "tax_number"
     }
   })
-  lastName: string;
+  taxNumber: string;
+
+  @property({
+    type: 'string',
+    required: true,
+    postgresql: {
+      columnName: "tax_office"
+    }
+  })
+  taxOffice: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  username: string;
+  country: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  email: string;
+  city: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  phone: string;
+  address: string;
+
+  @property({
+    type: 'number',
+    required: true,
+    postgresql: {
+      columnName: "official_user_id"
+    }
+  })
+  officialUserId: number;
 
   @property({
     type: 'string',
@@ -52,15 +70,6 @@ export class Users extends Entity {
     default: ModelStatus.ACTIVE,
   })
   status: ModelStatus;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "about_message"
-    }
-  })
-  aboutMessage: string;
 
   @property({
     type: 'date',
@@ -94,13 +103,15 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+
+  constructor(data?: Partial<Companies>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface CompaniesRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type CompaniesWithRelations = Companies & CompaniesRelations;

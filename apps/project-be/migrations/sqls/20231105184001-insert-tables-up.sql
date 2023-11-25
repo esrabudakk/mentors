@@ -8,11 +8,11 @@ VALUES
   ('Emily', 'Garcia', 'emilyg', 'emily@example.com', '555-555-1234', 'ACTIVE', 'Passionate about startups and innovation.');
 
 
-INSERT INTO companies (company_title, tax_number, tax_office, country, city, address, official_user_id)
+INSERT INTO companies (company_title, tax_number, tax_office, country, city, address, official_user_id, status)
 VALUES
-  ('ABC Corporation', '12345', 'Local Tax Office', 'USA', 'New York', '123 Main St', 1),
-  ('XYZ Inc.', '67890', 'City Tax Office', 'Canada', 'Toronto', '456 Elm St', 2),
-  ('Startup Ventures', '54321', 'Startup Tax Office', 'USA', 'San Francisco', '789 Oak St', 3);
+  ('ABC Corporation', '12345', 'Local Tax Office', 'USA', 'New York', '123 Main St', 1, 'ACTIVE'),
+  ('XYZ Inc.', '67890', 'City Tax Office', 'Canada', 'Toronto', '456 Elm St', 2, 'ACTIVE'),
+  ('Startup Ventures', '54321', 'Startup Tax Office', 'USA', 'San Francisco', '789 Oak St', 3, 'ACTIVE');
 
 INSERT INTO consultants (consultant_type, education, career_information, status, user_id)
 VALUES
@@ -20,11 +20,11 @@ VALUES
   ('Marketing Consultant', 'Marketing Degree', 'Digital marketing expert', 'ACTIVE', 2),
   ('Startup Advisor', 'Business Administration', 'Successful startup founder', 'ACTIVE', 3);
 
-INSERT INTO categories (category_type, description)
+INSERT INTO categories (category_type, description, status)
 VALUES
-  ('Financial Planning', 'Services related to financial planning and analysis'),
-  ('Marketing Strategies', 'Consultancy for marketing strategies and campaigns'),
-  ('Startup Guidance', 'Assistance for new startups and entrepreneurs');
+  ('Financial Planning', 'Services related to financial planning and analysis','ACTIVE'),
+  ('Marketing Strategies', 'Consultancy for marketing strategies and campaigns','ACTIVE'),
+  ('Startup Guidance', 'Assistance for new startups and entrepreneurs','ACTIVE');
 
 INSERT INTO advertisements (advertisement_title, description, price, currency, status, is_approved, user_id, category_id)
 VALUES

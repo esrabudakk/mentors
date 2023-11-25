@@ -1,8 +1,8 @@
 import {Entity, model, property} from '@loopback/repository';
 import {ModelStatus} from "./models-utils";
 
-@model({name: 'users',settings: {strict: true}})
-export class Users extends Entity {
+@model({name: 'consultants',settings: {strict: true}})
+export class Consultants extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -14,37 +14,25 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "consultant_type"
     }
   })
-  firstName: string;
+  consultantType: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  education: string;
 
   @property({
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "last_name"
+      columnName: "career_information"
     }
   })
-  lastName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  username: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
+  careerInformation: string;
 
   @property({
     type: 'string',
@@ -54,13 +42,13 @@ export class Users extends Entity {
   status: ModelStatus;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
     postgresql: {
-      columnName: "about_message"
+      columnName: "user_id"
     }
   })
-  aboutMessage: string;
+  userId: number;
 
   @property({
     type: 'date',
@@ -94,13 +82,14 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+  constructor(data?: Partial<Consultants>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface ConsultantsRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type ConsultantsWithRelations = Consultants & ConsultantsRelations;

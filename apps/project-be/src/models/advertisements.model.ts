@@ -1,8 +1,8 @@
 import {Entity, model, property} from '@loopback/repository';
 import {ModelStatus} from "./models-utils";
 
-@model({name: 'users',settings: {strict: true}})
-export class Users extends Entity {
+@model({name: 'advertisements',settings: {strict: true}})
+export class Advertisements extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -14,37 +14,28 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "advertisement_title"
     }
   })
-  firstName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "last_name"
-    }
-  })
-  lastName: string;
+  advertisementTitle: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  username: string;
+  description: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  price: number;
 
   @property({
     type: 'string',
     required: true,
   })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
+  currency: string;
 
   @property({
     type: 'string',
@@ -54,13 +45,31 @@ export class Users extends Entity {
   status: ModelStatus;
 
   @property({
-    type: 'string',
+    type: 'boolean',
     required: true,
     postgresql: {
-      columnName: "about_message"
+      columnName: "is_approved"
     }
   })
-  aboutMessage: string;
+  isApproved: boolean;
+
+  @property({
+    type: 'number',
+    required: true,
+    postgresql: {
+      columnName: "user_id"
+    }
+  })
+  userId: number;
+
+  @property({
+    type: 'number',
+    required: true,
+    postgresql: {
+      columnName: "category_id"
+    }
+  })
+  categoryId: number;
 
   @property({
     type: 'date',
@@ -94,13 +103,15 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+
+  constructor(data?: Partial<Advertisements>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface AdvertisementsRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type AdvertisementsWithRelations = Advertisements & AdvertisementsRelations;
