@@ -13,6 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Git Pull
+        run: |
+          cd /root/mentors/apps
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+          if ! git pull; then
+            echo "Failed to pull changes"
+            exit 1
+          fi
+
       - name: Restart app on droplet
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -23,7 +33,6 @@ jobs:
             cd /root/mentors/apps
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-            git pull
             cd /root/mentors/apps/project-be
             npm install
             npm run build
