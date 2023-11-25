@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
-export class Users extends Entity {
+@model()
+export class Permissions extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -13,52 +13,19 @@ export class Users extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "first_name"
+      columnName: "permission_name"
     }
   })
-  firstName: string;
+  permissionName: string;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
     postgresql: {
-      columnName: "last_name"
+      columnName: "role_id"
     }
   })
-  lastName: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  username: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  status: string;
-
-  @property({
-    type: 'string',
-    required: true,
-    postgresql: {
-      columnName: "about_message"
-    }
-  })
-  aboutMessage: string;
+  roleId: number;
 
   @property({
     type: 'date',
@@ -92,13 +59,14 @@ export class Users extends Entity {
   })
   updatedBy?: number;
 
-  constructor(data?: Partial<Users>) {
+
+  constructor(data?: Partial<Permissions>) {
     super(data);
   }
 }
 
-export interface UsersRelations {
+export interface PermissionsRelations {
   // describe navigational properties here
 }
 
-export type UsersWithRelations = Users & UsersRelations;
+export type PermissionsWithRelations = Permissions & PermissionsRelations;
