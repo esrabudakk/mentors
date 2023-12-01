@@ -1,11 +1,11 @@
-import Protected from "./components/Protected";
-import Public from "./components/Public";
-
 import useAuth from "./hooks/useAuth";
+import Home from "./pages/Home.jsx";
 
 function App() {
     const {token, isLogin} = useAuth();
-    return isLogin ? <Protected token={token} /> : <Public />;
+    console.log(token)
+    console.log(isLogin)
+    return <Home/>
 }
 
 export default App;
