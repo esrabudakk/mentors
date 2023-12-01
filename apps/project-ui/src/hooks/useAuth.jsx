@@ -25,7 +25,7 @@ const useAuth = () => {
             });
     }, []);
 
-    return [isLogin, token];
+    return {isLogin, token};
 };
 
 export default useAuth;
