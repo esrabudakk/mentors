@@ -49,18 +49,23 @@ export class Users extends Entity {
   @property({
     type: 'string',
     required: true,
+  })
+  keycloak_uid: string;
+
+  @property({
+    type: 'string',
+    required: true,
     default: ModelStatus.ACTIVE,
   })
   status: ModelStatus;
 
   @property({
     type: 'string',
-    required: true,
     postgresql: {
       columnName: "about_message"
     }
   })
-  aboutMessage: string;
+  aboutMessage?: string;
 
   @property({
     type: 'date',

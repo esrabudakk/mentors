@@ -5,6 +5,7 @@ CREATE TABLE users (
   username text NOT NULL,
   email text NOT NULL,
   phone text NOT NULL,
+  keycloak_uid text not null,
   status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
   about_message text,
   created_at timestamp NOT NULL default now(),

@@ -8,7 +8,6 @@ import {
 } from '@loopback/rest';
 import {repository} from "@loopback/repository";
 import {UsersRepository} from "../repositories";
-import {Users} from "../models";
 
 /**
  * OpenAPI response for ping()
@@ -46,6 +45,7 @@ export class PingController {
   public usersRepo : UsersRepository) {}
 
   // Map to `GET /ping`
+  // @authenticate('jwt')
   @get('/ping')
   @response(200, PING_RESPONSE)
   ping(): object {
@@ -59,22 +59,22 @@ export class PingController {
     };
   }
 
-  @get('/users')
-  @response(200, PING_RESPONSE)
-  pinssg() {
-    return this.usersRepo.find();
-  }
-  @post('/users')
-  @response(200, PING_RESPONSE)
-  createUser(
-      @requestBody({
-        content: {
-          'application/json':{
-            schema: getModelSchemaRef(Users)
-          }
-        }
-      }) newUser : Users
-  ) {
-    return this.usersRepo.create(newUser);
-  }
+  // @get('/users')
+  // @response(200, PING_RESPONSE)
+  // pinssg() {
+  //   return this.usersRepo.find();
+  // }
+  // @post('/users')
+  // @response(200, PING_RESPONSE)
+  // createUser(
+  //     @requestBody({
+  //       content: {
+  //         'application/json':{
+  //           schema: getModelSchemaRef(Users)
+  //         }
+  //       }
+  //     }) newUser : Users
+  // ) {
+  //   return this.usersRepo.create(newUser);
+  // }
 }
