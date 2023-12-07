@@ -1,6 +1,14 @@
 import {repository} from "@loopback/repository";
 import {UsersRepository} from "../repositories";
 import {jwtDecode} from "jwt-decode";
+import {ModelStatus} from "../models/models-utils";
+
+interface UserData {
+    given_name : string,
+    family_name: string,
+    email: string,
+    sub: string
+}
 
 export class UserService {
     constructor(
@@ -10,10 +18,18 @@ export class UserService {
     }
 
     async createUser(token: string){
-        const userData = jwtDecode(token);
+        const userData = jwtDecode(token) as UserData;
 
-        console.log(userData);
+        const newUser = await  this.usersRepository.create({
+            firstName: userData.given_name,
+            lastName:userData.family_name,
+            username: userData.email,
+            email:userData.email,
+            keycloak_uid:userData.sub,
+            status: ModelStatus.ACTIVE,
+        })
 
+        return newUser;
     }
 
 

@@ -8,6 +8,10 @@ import {
 } from '@loopback/rest';
 import {repository} from "@loopback/repository";
 import {UsersRepository} from "../repositories";
+import {UserServiceBindings} from "../keys";
+import {Users} from "../models";
+import {authorize} from "@loopback/authorization";
+import {PermissionKeys} from "../services/constants";
 
 /**
  * OpenAPI response for ping()
@@ -42,14 +46,16 @@ const PING_RESPONSE: ResponseObject = {
 export class PingController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request,
               @repository(UsersRepository)
-  public usersRepo : UsersRepository) {}
+  public usersRepo : UsersRepository,
+  @inject(UserServiceBindings.USER)
+public user :Users) {}
 
   // Map to `GET /ping`
-  // @authenticate('jwt')
+  @authorize({allowedRoles: [PermissionKeys.GET_PING]})
   @get('/ping')
   @response(200, PING_RESPONSE)
   ping(): object {
-
+    console.log(this.user)
     // Reply with a greeting, the current time, the url, and request headers
     return {
       greeting: 'Hello from LoopBack',

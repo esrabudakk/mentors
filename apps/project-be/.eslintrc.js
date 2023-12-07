@@ -1,3 +1,7 @@
 module.exports = {
-  extends: '@loopback/eslint-config',
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: [
+    '@loopback/eslint-config',
+  ],
 };

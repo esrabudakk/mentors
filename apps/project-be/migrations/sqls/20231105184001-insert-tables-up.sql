@@ -1,11 +1,11 @@
-INSERT INTO users (first_name, last_name, username, email, phone, status, about_message)
+INSERT INTO users (first_name, last_name, username, email, phone, status, about_message, keycloak_uid)
 VALUES
-  ('John', 'Doe', 'johndoe', 'john@example.com', '123-456-7890', 'ACTIVE', 'I am a business enthusiast.'),
-  ('Jane', 'Smith', 'janesmith', 'jane@example.com', '987-654-3210', 'ACTIVE', 'Experienced entrepreneur.'),
-  ('Mike', 'Johnson', 'mikejohnson', 'mike@example.com', '555-555-5555', 'ACTIVE', 'Passionate about startups.'),
-  ('Sarah', 'Williams', 'sarahw', 'sarah@example.com', '555-123-4567', 'ACTIVE', 'Entrepreneur and small business owner.'),
-  ('Mark', 'Johnson', 'markj', 'mark@example.com', '555-987-6543', 'ACTIVE', 'Seeking business growth opportunities.'),
-  ('Emily', 'Garcia', 'emilyg', 'emily@example.com', '555-555-1234', 'ACTIVE', 'Passionate about startups and innovation.');
+  ('John', 'Doe', 'johndoe', 'john@example.com', '123-456-7890', 'ACTIVE', 'I am a business enthusiast.', 'dummy-keycloak_uid1'),
+  ('Jane', 'Smith', 'janesmith', 'jane@example.com', '987-654-3210', 'ACTIVE', 'Experienced entrepreneur.','dummy-keycloak_uid2'),
+  ('Mike', 'Johnson', 'mikejohnson', 'mike@example.com', '555-555-5555', 'ACTIVE', 'Passionate about startups.','dummy-keycloak_uid3'),
+  ('Sarah', 'Williams', 'sarahw', 'sarah@example.com', '555-123-4567', 'ACTIVE', 'Entrepreneur and small business owner.','dummy-keycloak_uid4'),
+  ('Mark', 'Johnson', 'markj', 'mark@example.com', '555-987-6543', 'ACTIVE', 'Seeking business growth opportunities.','dummy-keycloak_uid5'),
+  ('Emily', 'Garcia', 'emilyg', 'emily@example.com', '555-555-1234', 'ACTIVE', 'Passionate about startups and innovation.','dummy-keycloak_uid6');
 
 
 INSERT INTO companies (company_title, tax_number, tax_office, country, city, address, official_user_id, status)
@@ -47,7 +47,8 @@ VALUES
   ('MANAGE_COMPANY', 1),
   ('VIEW_ADVERTISEMENT', 1),
   ('VIEW_OWN_PROFILE', 1),
-  ('CREATE_ADVERTISEMENT', 1);
+  ('CREATE_ADVERTISEMENT', 1),
+  ('GET_PING', 2);
 
 INSERT INTO user_roles (user_id, role_id)
 VALUES

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Permissions} from './permissions.model';
 
 @model({name: 'roles',settings: {strict: true}})
 export class Roles extends Entity {
@@ -12,6 +13,9 @@ export class Roles extends Entity {
   @property({
     type: 'string',
     required: true,
+    postgresql: {
+      columnName: "role_name"
+    }
   })
   roleName: string;
 
@@ -53,6 +57,8 @@ export class Roles extends Entity {
   })
   updatedBy?: number;
 
+  @hasMany(() => Permissions, {keyTo: 'roleId'})
+  permissions: Permissions[];
 
   constructor(data?: Partial<Roles>) {
     super(data);

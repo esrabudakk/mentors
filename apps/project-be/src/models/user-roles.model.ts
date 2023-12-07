@@ -1,6 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Users} from './users.model';
 
-@model({name: 'user_roles',settings: {strict: true}})
+@model({name: 'user_roles', settings: {strict: true}})
 export class UserRoles extends Entity {
   @property({
     type: 'number',
@@ -58,7 +59,6 @@ export class UserRoles extends Entity {
     }
   })
   updatedBy?: number;
-
 
   constructor(data?: Partial<UserRoles>) {
     super(data);
