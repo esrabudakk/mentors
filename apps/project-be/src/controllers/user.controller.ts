@@ -34,23 +34,20 @@ export class UserController {
     return this.userService.createUser(token);
   }
 
-  // @get('/users')
-  // @response(200, {
-  //   description: 'Array of Users model instances',
-  //   content: {
-  //     'application/json': {
-  //       schema: {
-  //         type: 'array',
-  //         items: getModelSchemaRef(Users, {includeRelations: true}),
-  //       },
-  //     },
-  //   },
-  // })
-  // async find(
-  //   @param.filter(Users) filter?: Filter<Users>,
-  // ): Promise<Users[]> {
-  //   return this.usersRepository.find(filter);
-  // }
+  @get('/users')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+        schema: {
+        },
+      },
+    },
+  })
+  async find(
+  ): Promise<Users[]> {
+    return this.userService.getUser();
+  }
   //
   // @patch('/users/{id}')
   // @response(204, {
