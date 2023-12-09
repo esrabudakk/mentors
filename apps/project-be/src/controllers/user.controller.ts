@@ -29,7 +29,7 @@ export class UserController {
         },
       },
     })
-    token:string
+    token:{token: string}
   ){
     return this.userService.createUser(token);
   }

@@ -17,8 +17,8 @@ export class UserService {
     ) {
     }
 
-    async createUser(token: string){
-        const userData = jwtDecode(token) as UserData;
+    async createUser(newToken: {token:string}){
+        const userData = jwtDecode(newToken.token) as UserData;
 
         const newUser = await  this.usersRepository.create({
             firstName: userData.given_name,
