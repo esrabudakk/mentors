@@ -1,5 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import {ModelStatus} from "./models-utils";
+import {UserRoles} from './user-roles.model';
 
 @model({name: 'users',settings: {strict: true}})
 export class Users extends Entity {
@@ -42,9 +43,14 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
   phone: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  keycloak_uid: string;
 
   @property({
     type: 'string',
@@ -55,12 +61,11 @@ export class Users extends Entity {
 
   @property({
     type: 'string',
-    required: true,
     postgresql: {
       columnName: "about_message"
     }
   })
-  aboutMessage: string;
+  aboutMessage?: string;
 
   @property({
     type: 'date',
@@ -93,6 +98,9 @@ export class Users extends Entity {
     }
   })
   updatedBy?: number;
+
+  @hasMany(() => UserRoles, {keyTo: 'userId'})
+  userRoles: UserRoles[];
 
   constructor(data?: Partial<Users>) {
     super(data);

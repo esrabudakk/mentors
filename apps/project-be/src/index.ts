@@ -1,4 +1,12 @@
 import {ApplicationConfig, ProjectAppsApplication} from './application';
+import {
+  AuthorizationComponent,
+  AuthorizationDecision,
+  AuthorizationOptions,
+  AuthorizationTags
+} from "@loopback/authorization";
+import {MyAuthorizationProvider} from "./services/authorization.service";
+
 const dotenv = require('dotenv').config();
 export * from './application';
 
@@ -8,6 +16,17 @@ export async function main(options: ApplicationConfig = {}) {
   await app.start();
 
   const url = app.restServer.url;
+
+  const data : AuthorizationOptions = {
+    precedence: AuthorizationDecision.DENY,
+    defaultDecision: AuthorizationDecision.DENY
+  }
+
+  const binding = app.component(AuthorizationComponent);
+  app.configure(binding.key).to(data);
+
+  app.bind('authorizationProviders.my-authorizer-provider').toProvider(MyAuthorizationProvider).tag(AuthorizationTags.AUTHORIZER);
+
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
   console.log('pg_host', process.env.PG_HOST);

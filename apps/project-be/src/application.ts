@@ -9,6 +9,8 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import {AuthenticationService} from "./services/authentication.service";
+import {AUTHENTICATION_SERVICE} from "./keys";
 
 export {ApplicationConfig};
 
@@ -20,6 +22,8 @@ export class ProjectAppsApplication extends BootMixin(
 
     // Set up the custom sequence
     this.sequence(MySequence);
+
+
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
@@ -40,5 +44,9 @@ export class ProjectAppsApplication extends BootMixin(
         nested: true,
       },
     };
+    this.setUpBindings();
+  }
+  private setUpBindings():void {
+    this.bind(AUTHENTICATION_SERVICE).toClass(AuthenticationService);
   }
 }
