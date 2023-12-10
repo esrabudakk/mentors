@@ -1,5 +1,8 @@
-import  { useState, useEffect, useRef } from "react";
+import  { useEffect, useRef } from "react";
 import Keycloak from "keycloak-js";
+import {jwtDecode} from "jwt-decode";
+import useAuthKeycloak from "../store/useAuthKeycloak.js";
+import {useNavigate} from "react-router";
 
 const client = new Keycloak({
     url: import.meta.env.VITE_KEYCLOAK_URL,
@@ -9,24 +12,47 @@ const client = new Keycloak({
 
 const useAuth = () => {
     const isRun = useRef(false);
-    const [token, setToken] = useState(null);
-    const [isLogin, setLogin] = useState(false);
+    const {setToken, setRefreshToken, setDetail, setKeycloak, setLogin, isLogin, sendToken} = useAuthKeycloak()
+    const navigate = useNavigate()
+
     useEffect(() => {
-        if (isRun.current) return;
+        const takeToken = async () => {
+            if (isRun.current) return;
+            isRun.current = true;
 
-        isRun.current = true;
-        client
-            .init({
-                onLoad: "login-required",
-            })
-            .then((res) => {
-                setLogin(res);
-                setToken(client.token);
-            });
-    }, []);
+            if (isLogin) {
+                navigate('/')
+                return
+            }
 
-    return {isLogin, token};
+            await client
+              .init({
+                  onLoad: "login-required",
+              })
+              .then((res) => {
+                  sendToken(client.token)
+                  setLogin(res)
+                  setToken(client.token);
+                  setRefreshToken(client.refreshToken);
+                  setDetail(jwtDecode(client.token));
+                  setKeycloak(client);
+                  navigate('/')
+              });
+        }
+        takeToken().catch((err) => {
+            console.log(err)
+        })
+    }, [setToken, setRefreshToken, setDetail, setKeycloak, setLogin, isLogin, navigate]);
+
+    return null;
 };
 
+export const logoutFunction = async () => {
+    try{
+        await client.logout();
+    } catch (e) {
+        console.log('in logout function', e)
+    }
+}
+
 export default useAuth;
-export {client}
