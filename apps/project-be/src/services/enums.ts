@@ -4,3 +4,4 @@ export enum PermissionKeys {
     APPROVE_COMPANY = 'APPROVE_COMPANY',
     GET_PING = 'GET_PING'
 }
+

@@ -22,7 +22,7 @@ export class UserController {
     description: 'Users model instance',
     content: {'application/json': {schema: getModelSchemaRef(Users)}},
   })
-  async create(
+  async createUser(
     @requestBody({
       content: {
         'application/json': {
@@ -44,27 +44,39 @@ export class UserController {
       },
     },
   })
-  async find(
+  async findUsers(
   ): Promise<Users[]> {
-    return this.userService.getUser();
+    return this.userService.getUsers();
   }
-  //
-  // @patch('/users/{id}')
-  // @response(204, {
-  //   description: 'Users PATCH success',
-  // })
-  // async updateById(
-  //   @param.path.number('id') id: number,
-  //   @requestBody({
-  //     content: {
-  //       'application/json': {
-  //         schema: getModelSchemaRef(Users, {partial: true}),
-  //       },
-  //     },
-  //   })
-  //   users: Users,
-  // ): Promise<void> {
-  //   await this.usersRepository.updateById(id, users);
-  // }
 
+  @get('/users/{id}')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+        schema: {
+        },
+      },
+    },
+  })
+  async findUserById(
+    @param.path.number('id') id:number
+  ): Promise<Users> {
+    return this.userService.getUserById(id);
+  }
+
+  @patch('/users/my-profile')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+      },
+    },
+  })
+  async updateMyProfile(
+    @param.path.number('id') id:number,
+    @requestBody() newUserData: Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage'>
+  ) {
+    await this.userService.updateMyProfile(id, newUserData);
+  }
 }
