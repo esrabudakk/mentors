@@ -6,6 +6,8 @@ import {
   AuthorizationTags
 } from "@loopback/authorization";
 import {MyAuthorizationProvider} from "./services/authorization.service";
+import { MinioClient } from './services/minio.service';
+import { BindingScope } from '@loopback/core';
 
 const dotenv = require('dotenv').config();
 export * from './application';
@@ -25,7 +27,14 @@ export async function main(options: ApplicationConfig = {}) {
   const binding = app.component(AuthorizationComponent);
   app.configure(binding.key).to(data);
 
-  app.bind('authorizationProviders.my-authorizer-provider').toProvider(MyAuthorizationProvider).tag(AuthorizationTags.AUTHORIZER);
+  app
+    .bind('authorizationProviders.my-authorizer-provider')
+    .toProvider(MyAuthorizationProvider)
+    .tag(AuthorizationTags.AUTHORIZER);
+  app
+    .bind('services.MinioClient')
+    .toClass(MinioClient)
+    .inScope(BindingScope.SINGLETON);
 
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);

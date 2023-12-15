@@ -1,4 +1,4 @@
-import {ProjectAppsApplication} from '../..';
+import {ProjectAppsApplication} from '../../index';
 import {
   createRestAppClient,
   givenHttpServerConfig,
