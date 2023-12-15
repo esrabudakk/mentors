@@ -1,1 +1,0 @@
-DROP INDEX uix_lower_users_username, uix_lower_users_email, uix_users_phone;
