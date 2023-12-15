@@ -61,7 +61,7 @@ CREATE TABLE advertisements (
   price decimal(5,2) NOT NULL,
   currency text NOT NULL,
   status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
-  is_approved text NOT NULL,
+  is_approved boolean NOT NULL,
   user_id integer NOT NULL,
   category_id integer NOT NULL,
   created_at timestamp NOT NULL default now(),

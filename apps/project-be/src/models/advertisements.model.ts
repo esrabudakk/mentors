@@ -41,8 +41,11 @@ export class Advertisements extends Entity {
     type: 'string',
     required: true,
     default: ModelStatus.ACTIVE,
+    jsonSchema: {
+      enum: [ModelStatus]
+    }
   })
-  status: ModelStatus;
+  status: string;
 
   @property({
     type: 'boolean',
