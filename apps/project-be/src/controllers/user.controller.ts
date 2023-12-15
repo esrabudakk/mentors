@@ -66,13 +66,6 @@ export class UserController {
   }
 
   @patch('/users/my-profile')
-  @response(200, {
-    description: 'Array of Users model instances',
-    content: {
-      'application/json': {
-      },
-    },
-  })
   async updateMyProfile(
     @param.path.number('id') id:number,
     @requestBody() newUserData: Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage'>

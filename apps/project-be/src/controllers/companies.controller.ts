@@ -66,13 +66,6 @@ import { CompaniesService } from '../services/companies.service';
     }
   
     @patch('/companies/{id}/status')
-    @response(200, {
-      description: 'Array of Company model instances',
-      content: {
-        'application/json': {
-        },
-      },
-    })
     async updateMyProfile(
       @param.path.number('id') id:number,
       @requestBody() newStatus: string
