@@ -242,7 +242,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
         >
           <Link onClick={scrollToTop} to="/">
             <img
-              src={navBar2 ? "/D.png" : logo}
+              src= "/D.png"
               className="w-24 max-lg:w-24 border"
               alt="D"
             />

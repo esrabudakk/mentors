@@ -16,6 +16,9 @@ import Contact from "./contact";
 import Results from "./results";
 import KeycloakAuth from "./keycloakauth.jsx";
 import Logout from "./logout.jsx";
+import ServiceDetail from "./serviceDetail.jsx";
+import { baseService } from "../components/network/services/baseService";
+import { API_URL } from "../components/network/env/config";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +73,16 @@ const router = createBrowserRouter([
       <>
         <NavBar/>
         <Service/>
+        <Footer/>
+      </>
+    ),
+  },
+  {
+    path: "/services/:id/:id",
+    element: (
+      <>
+        <NavBar/>
+        <ServiceDetail/>
         <Footer/>
       </>
     ),
