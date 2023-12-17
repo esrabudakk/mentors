@@ -151,7 +151,7 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
                   </Stack>
                 </CardBody>
                 <Divider />
-                <CardFooter height="250px">
+                <CardFooter height="100px">
                   <Button
                     type="link"
                     onClick={() => goToDetail(e.id)}
