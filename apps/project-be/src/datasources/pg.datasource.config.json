@@ -1,0 +1,10 @@
+{
+  "name": "pg",
+  "connector": "postgresql",
+  "url": "",
+  "host": "157.230.84.216",
+  "port": 5432,
+  "user": "postgres",
+  "password": "pass123",
+  "database": "test-consultancy"
+}
