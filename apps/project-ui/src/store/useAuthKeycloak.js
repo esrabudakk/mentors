@@ -71,7 +71,7 @@ const useAuthKeycloak = create(
         },
         sendToken: async (token) => {
           try{
-            await axios.post(import.meta.env.VITE_BASE_URL + '/users', {token})
+            await axios.post(import.meta.env.VITE_BASE_URL + '/public/users', {token})
           } catch (e) {
             console.log('send token error ==> ', e)
           }
