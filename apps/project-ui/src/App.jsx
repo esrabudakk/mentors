@@ -4,7 +4,7 @@ import NavBar from "../components/navbar-component/navbar";
 import Services from "./services";
 import ShowCase2 from "./showcase2";
 import Error404 from "./error404";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutProject from "../components/project-page-components/aboutProject";
 import Products from "./products";
 import About from "./about";
@@ -16,15 +16,25 @@ import Contact from "./contact";
 import Results from "./results";
 import KeycloakAuth from "./keycloakauth.jsx";
 import Logout from "./logout.jsx";
+import ServiceDetail from "./serviceDetail.jsx";
+import { baseService } from "../components/network/services/baseService";
+import { API_URL } from "../components/network/env/config";
+import "./App.css";
+import AppHeader from "../admin/Components/AppHeader"
+import SideMenu from "../admin/Components/SideMenu"
+import PageContent from "../admin/Components/PageContent"
+import AppFooter from "../admin/Components/AppFooter"
+import Dashboard from "../admin/Pages/Dashbaord/index.jsx";
+import Customers from "../admin/Pages/Customers/index.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
-        <NavBar/>
-        <HomePage/>
-        <Footer/>
+        <NavBar />
+        <HomePage />
+        <Footer />
       </>
     ),
   },
@@ -32,9 +42,9 @@ const router = createBrowserRouter([
     path: "/services",
     element: (
       <>
-        <NavBar/>
-        <Services/>
-        <Footer/>
+        <NavBar />
+        <Services />
+        <Footer />
       </>
     ),
   },
@@ -42,7 +52,7 @@ const router = createBrowserRouter([
     path: "/keycloak-auth",
     element: (
       <>
-        <KeycloakAuth/>
+        <KeycloakAuth />
       </>
     ),
   },
@@ -50,7 +60,7 @@ const router = createBrowserRouter([
     path: "/logout",
     element: (
       <>
-        <Logout/>
+        <Logout />
       </>
     ),
   },
@@ -58,9 +68,9 @@ const router = createBrowserRouter([
     path: "/search",
     element: (
       <>
-        <NavBar navBar2={true}/>
-        <Results/>
-        <Footer/>
+        <NavBar navBar2={true} />
+        <Results />
+        <Footer />
       </>
     ),
   },
@@ -68,9 +78,19 @@ const router = createBrowserRouter([
     path: "/services/:id",
     element: (
       <>
-        <NavBar/>
-        <Service/>
-        <Footer/>
+        <NavBar />
+        <Service />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/services/:id/:id",
+    element: (
+      <>
+        <NavBar />
+        <ServiceDetail />
+        <Footer />
       </>
     ),
   },
@@ -78,9 +98,9 @@ const router = createBrowserRouter([
     path: "/showcases/showcase1",
     element: (
       <>
-        <NavBar showCase1Page={true}/>
-        <ShowCase1/>
-        <Footer/>
+        <NavBar showCase1Page={true} />
+        <ShowCase1 />
+        <Footer />
       </>
     ),
   },
@@ -88,9 +108,9 @@ const router = createBrowserRouter([
     path: "/showcases/showcase2",
     element: (
       <>
-        <NavBar/>
-        <ShowCase2/>
-        <Footer/>
+        <NavBar />
+        <ShowCase2 />
+        <Footer />
       </>
     ),
   },
@@ -98,9 +118,9 @@ const router = createBrowserRouter([
     path: "/featured",
     element: (
       <>
-        <NavBar/>
-        <Featured/>
-        <Footer/>
+        <NavBar />
+        <Featured />
+        <Footer />
       </>
     ),
   },
@@ -108,9 +128,9 @@ const router = createBrowserRouter([
     path: "/popular",
     element: (
       <>
-        <NavBar/>
-        <Popular/>
-        <Footer/>
+        <NavBar />
+        <Popular />
+        <Footer />
       </>
     ),
   },
@@ -118,9 +138,9 @@ const router = createBrowserRouter([
     path: "/products/:id",
     element: (
       <>
-        <NavBar navBar2={true}/>
-        <Products/>
-        <Footer/>
+        <NavBar navBar2={true} />
+        <Products />
+        <Footer />
       </>
     ),
   },
@@ -128,9 +148,9 @@ const router = createBrowserRouter([
     path: "/projects/:id",
     element: (
       <>
-        <NavBar/>
-        <AboutProject/>
-        <Footer/>
+        <NavBar />
+        <AboutProject />
+        <Footer />
       </>
     ),
   },
@@ -138,9 +158,9 @@ const router = createBrowserRouter([
     path: "/about",
     element: (
       <>
-        <NavBar/>
-        <About/>
-        <Footer/>
+        <NavBar />
+        <Footer />
+        <About />
       </>
     ),
   },
@@ -148,21 +168,53 @@ const router = createBrowserRouter([
     path: "/contact",
     element: (
       <>
-        <NavBar/>
-        <Contact/>
-        <Footer/>
+        <NavBar />
+        <Contact />
+        <Footer />
+      </>
+    ),
+  },
+
+  {
+    path: "/admin/dashboard",
+    element: (
+      <>
+        <div className="App">
+          <AppHeader />
+          <div className="SideMenuAndPageContent">
+            <SideMenu></SideMenu>
+            <Dashboard />
+          </div>
+          <AppFooter />
+        </div>
       </>
     ),
   },
   {
+    path: "/admin/customers",
+    element: (
+      <>
+        <div className="App">
+          <AppHeader />
+          <div className="SideMenuAndPageContent">
+            <SideMenu></SideMenu>
+            <Customers />
+          </div>
+          <AppFooter />
+        </div>
+      </>
+    ),
+  },
+
+  {
     path: "*",
-    element: <Error404/>,
+    element: <Error404 />,
   },
 ]);
 
 function App() {
 
-  return <RouterProvider router={router}/>
+  return <RouterProvider router={router} />
 }
 
 export default App;
