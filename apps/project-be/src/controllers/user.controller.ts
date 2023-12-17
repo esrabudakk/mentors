@@ -11,13 +11,15 @@ import {
 import {Users} from '../models';
 import {service} from "@loopback/core";
 import {UserService} from "../services/user.service";
+import {authorize} from "@loopback/authorization";
+import {PermissionKeys} from "../services/enums";
 export class UserController {
   constructor(
    @service(UserService)
    public userService : UserService
   ) {}
 
-  @post('/users')
+  @post('/public/users')
   @response(200, {
     description: 'Users model instance',
     content: {'application/json': {schema: getModelSchemaRef(Users)}},
@@ -33,7 +35,7 @@ export class UserController {
   ){
     return this.userService.createUser(token);
   }
-
+@authorize({})
   @get('/users')
   @response(200, {
     description: 'Array of Users model instances',
@@ -49,6 +51,7 @@ export class UserController {
     return this.userService.getUsers();
   }
 
+  @authorize({})
   @get('/users/{id}')
   @response(200, {
     description: 'Array of Users model instances',
@@ -64,7 +67,7 @@ export class UserController {
   ): Promise<Users> {
     return this.userService.getUserById(id);
   }
-
+@authorize({allowedRoles: [PermissionKeys.UPDATE_OWN_PROFILE]})
   @patch('/users/my-profile')
   async updateMyProfile(
     @param.path.number('id') id:number,

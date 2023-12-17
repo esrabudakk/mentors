@@ -56,6 +56,15 @@ export class Companies extends Entity {
   address: string;
 
   @property({
+    type: 'boolean',
+    required: true,
+    postgresql: {
+      columnName: "is_approved"
+    }
+  })
+  isApproved: boolean;
+
+  @property({
     type: 'number',
     required: true,
     postgresql: {

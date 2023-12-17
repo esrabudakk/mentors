@@ -22,6 +22,7 @@ CREATE TABLE companies (
   country text NOT NULL,
   city text NOT NULL,
   address text NOT NULL,
+  is_approved boolean NOT NULL,
   status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
   official_user_id integer NOT NULL,
   created_at timestamp NOT NULL default now(),
@@ -32,9 +33,10 @@ CREATE TABLE companies (
 
 CREATE TABLE consultants (
   id serial PRIMARY KEY,
-  consultant_type text NOT NULL,
+  consultant_type_id integer NOT NULL,
   education text NOT NULL,
   career_information text NOT NULL,
+  is_approved boolean NOT NULL,
   status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
   user_id integer NOT NULL,
   created_at timestamp NOT NULL default now(),
@@ -100,11 +102,22 @@ CREATE TABLE user_roles (
   updated_by integer
 );
 
+CREATE TABLE consultant_type {
+  id serial PRIMARY KEY,
+  consultant_name text NOT NULL,
+  created_at timestamp NOT NULL default now(),
+  created_by integer,
+  updated_at timestamp,
+  updated_by integer
+}
+
 ALTER TABLE companies ADD FOREIGN KEY (official_user_id) REFERENCES users (id);
 CREATE INDEX ix_companies_official_user_id ON public.companies(official_user_id);
 
 ALTER TABLE consultants ADD FOREIGN KEY (user_id) REFERENCES users (id);
 CREATE INDEX ix_consultants_user_id ON public.consultants(user_id);
+ALTER TABLE consultants ADD FOREIGN KEY (consultant_type_id) REFERENCES consultant_type (id);
+CREATE INDEX ix_consultants_consultant_type_id ON public.consultants(consultant_type_id);
 
 
 ALTER TABLE advertisements ADD FOREIGN KEY (user_id) REFERENCES users (id);

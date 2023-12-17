@@ -36,18 +36,29 @@ INSERT INTO roles (role_name, description)
 VALUES
   ('Admin', 'Administrator role with full access'),
   ('Client', 'Role for clients who seek business consultancy services'),
-  ('Consultant', 'Role for business consultants providing services'),
-  ('User', 'Standard user role with limited access');
+  ('Consultant', 'Role for business consultants providing services')
+
 
 INSERT INTO permissions (permission_name, role_id)
 VALUES
   ('MANAGE_USER', 1),
   ('APPROVE_ADVERTISEMENT', 1),
-  ('APPROVE_COMPANY', 1),
-  ('MANAGE_COMPANY', 1),
-  ('VIEW_ADVERTISEMENT', 1),
   ('VIEW_OWN_PROFILE', 1),
-  ('CREATE_ADVERTISEMENT', 1),
+  ('APPROVE_COMPANY', 1),
+  ('APPROVE_CONSULTANT', 1),
+  ('VIEW_ADVERTISEMENT', 1),
+  ('VIEW_ADVERTISEMENT', 2),
+  ('VIEW_ADVERTISEMENT',3),
+  ('VIEW_COMPANY_PROFILE',3),
+  ('DELETE_ADVERTISEMENT',3),
+  ('VIEW_OWN_PROFILE', 2),
+  ('VIEW_OWN_PROFILE', 3),
+  ('CREATE_ADVERTISEMENT', 3),
+  ('CREATE_COMPANY', 3),
+  ('UPDATE_ADVERTISEMENT', 3),
+  ('UPDATE_COMPANY_PROFILE', 3),
+  ('UPDATE_CONSULTANT_PROFILE', 3),
+  ('CREATE_CONSULTANT_PROFILE', 2),
   ('GET_PING', 2);
 
 INSERT INTO user_roles (user_id, role_id)

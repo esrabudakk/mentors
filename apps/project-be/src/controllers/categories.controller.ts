@@ -14,7 +14,7 @@ export class CategoriesController {
     public categoriesService: CategoriesService
   ) {}
 
-  @get('/categories')
+  @get('/public/categories')
   @response(200, {
     description: 'Array of Users model instances',
     content: {

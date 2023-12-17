@@ -1,9 +1,9 @@
 import {repository} from "@loopback/repository";
-import {ConsultantsRepository, RolesRepository, UserRolesRepository, UsersRepository} from "../repositories";
-import { Consultants, Users } from "../models";
-import { ModelStatus } from "../models/models-utils";
-import { inject } from "@loopback/core";
-import { UserServiceBindings } from "../keys";
+import {ConsultantsRepository} from "../repositories";
+import {Consultants, Users} from "../models";
+import {ModelStatus} from "../models/models-utils";
+import {inject} from "@loopback/core";
+import {UserServiceBindings} from "../keys";
 
 enum ConsultantType {
     FINANCIAL_CONSULTANT = "Financial Consultant",
@@ -39,4 +39,9 @@ export class ConsultantsService {
         ...consultants
     })
    }
+    async updateConsultantApproved(consultantId: number, newApprovedStatus:boolean){
+        await this.consultantsRepository.updateById(consultantId,{
+            isApproved: newApprovedStatus
+        })
+    }
 }

@@ -42,6 +42,11 @@ export class CompaniesService {
     async getCompanies(){
         return this.companiesRepository.find();
     }
+    async updateCompanyApproved(consultantId: number, newApprovedStatus:boolean){
+        await this.companiesRepository.updateById(consultantId,{
+            isApproved: newApprovedStatus
+        })
+    }
 
 
 }

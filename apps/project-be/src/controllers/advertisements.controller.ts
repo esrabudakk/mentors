@@ -16,6 +16,7 @@ export class AdvertisementsController {
       public advertisementService : AdvertisementsService
   ) {}
 
+  @authorize({allowedRoles: [PermissionKeys.CREATE_ADVERTISEMENT]})
   @post('/advertisements')
   @response(200, {
     description: 'Users model instance',
@@ -32,7 +33,7 @@ export class AdvertisementsController {
   ){
     return this.advertisementService.createAdvertisement(newAdvertisements);
   }
-  
+  @authorize({allowedRoles: [PermissionKeys.VIEW_ADVERTISEMENT]})
   @get('/advertisements')
   @response(200, {
     description: 'Array of Users model instances',
@@ -47,7 +48,7 @@ export class AdvertisementsController {
   ): Promise<Advertisements[]> {
     return this.advertisementService.getAdvertisements();
   }
-  
+  @authorize({allowedRoles: [PermissionKeys.VIEW_ADVERTISEMENT]})
   @get('/advertisements/{id}')
   @response(200, {
     description: 'Array of Users model instances',
@@ -63,7 +64,7 @@ export class AdvertisementsController {
   ): Promise<Advertisements> {
     return this.advertisementService.getAdvertisementsById(id);
   }
-  
+  @authorize({allowedRoles: [PermissionKeys.UPDATE_ADVERTISEMENT]})
   @patch('/advertisements/{id}')
   async updateMyAdvertisement(
       @param.path.number('id') id:number,
@@ -71,7 +72,7 @@ export class AdvertisementsController {
   ) {
     await this.advertisementService.updateMyAdvertisement(id, newAdvertisement);
   }
-
+@authorize({allowedRoles: [PermissionKeys.DELETE_ADVERTISEMENT]})
   @del('/advertisements/{id}')
   @response(204, {
     description: 'Advertisement DELETE success',
@@ -80,6 +81,7 @@ export class AdvertisementsController {
     await this.advertisementService.deleteByAdvertisementId(id);
   }
 
+  @authorize({allowedRoles: [PermissionKeys.APPROVE_ADVERTISEMENT]})
   @patch('/advertisements/{id}')
   async updateAdvertisementApproved(
       @param.path.number('id') id:number,

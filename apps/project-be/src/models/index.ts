@@ -7,3 +7,4 @@ export * from './consultants.model';
 export * from './permissions.model';
 export * from './categories.model';
 export * from './user-roles.model';
+export * from './consultant-type.model';
