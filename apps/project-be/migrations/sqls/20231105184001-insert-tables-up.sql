@@ -8,17 +8,24 @@ VALUES
   ('Emily', 'Garcia', 'emilyg', 'emily@example.com', '555-555-1234', 'ACTIVE', 'Passionate about startups and innovation.','dummy-keycloak_uid6');
 
 
-INSERT INTO companies (company_title, tax_number, tax_office, country, city, address, official_user_id, status)
+INSERT INTO companies (company_title, tax_number, tax_office, country, city, address, is_approved, status, official_user_id, created_by)
 VALUES
-  ('ABC Corporation', '12345', 'Local Tax Office', 'USA', 'New York', '123 Main St', 1, 'ACTIVE'),
-  ('XYZ Inc.', '67890', 'City Tax Office', 'Canada', 'Toronto', '456 Elm St', 2, 'ACTIVE'),
-  ('Startup Ventures', '54321', 'Startup Tax Office', 'USA', 'San Francisco', '789 Oak St', 3, 'ACTIVE');
+  ('ABC Company', '1234567890', 'Tax Office A', 'Country A', 'City A', '123 Main St.', true, 'ACTIVE', 1, 1),
+  ('XYZ Corporation', '0987654321', 'Tax Office B', 'Country B', 'City B', '456 Oak St.', true, 'ACTIVE', 2, 2),
+  ('PQR Ltd.', '5678901234', 'Tax Office C', 'Country C', 'City C', '789 Elm St.', true, 'ACTIVE', 3, 3);
 
-INSERT INTO consultants (consultant_type, education, career_information, status, user_id)
+
+INSERT INTO consultant_type (consultant_name)
 VALUES
-  ('Financial Consultant', 'MBA in Finance', '10+ years of finance experience', 'ACTIVE', 1),
-  ('Marketing Consultant', 'Marketing Degree', 'Digital marketing expert', 'ACTIVE', 2),
-  ('Startup Advisor', 'Business Administration', 'Successful startup founder', 'ACTIVE', 3);
+  ('Software Consultant'),
+  ('Mechanical Consultant'),
+  ('Data Science Consultant');
+
+INSERT INTO consultants (consultant_type_id, education, career_information, is_approved, status, user_id, created_by)
+VALUES
+  (1, 'Computer Science', 'Experienced in software development.', true, 'ACTIVE', 1, 1),
+  (2, 'Engineering', 'Specialized in mechanical engineering.', true, 'ACTIVE', 2, 2),
+  (1, 'Data Science', 'Skilled in machine learning.', true, 'ACTIVE', 3, 3);
 
 INSERT INTO categories (category_type, description, status)
 VALUES
@@ -28,9 +35,9 @@ VALUES
 
 INSERT INTO advertisements (advertisement_title, description, price, currency, status, is_approved, user_id, category_id)
 VALUES
-  ('Financial Planning Services', 'Get expert financial planning advice', 100.00, 'USD', 'ACTIVE', 'Yes', 1, 1),
-  ('Digital Marketing Consultancy', 'Boost your online presence with our marketing services', 75.50, 'USD', 'ACTIVE', 'Yes', 2, 2),
-  ('Startup Launch Assistance', 'Guidance for launching your startup', 150.00, 'USD', 'ACTIVE', 'Yes', 3, 3);
+  ('Financial Planning Services', 'Get expert financial planning advice', 100.00, 'USD', 'ACTIVE', true, 1, 1),
+  ('Digital Marketing Consultancy', 'Boost your online presence with our marketing services', 75.50, 'USD', 'ACTIVE', true, 2, 2),
+  ('Startup Launch Assistance', 'Guidance for launching your startup', 150.00, 'USD', 'ACTIVE', true, 3, 3);
 
 INSERT INTO roles (role_name, description)
 VALUES
