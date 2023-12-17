@@ -1,44 +1,95 @@
 import "./service.css";
-import {  useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { Button, Spin } from "antd";
+import { Spin } from "antd";
 import { baseService } from "../network/services/baseService";
 import { motion } from "framer-motion";
 import { animationVariants } from "../../constants/animationVariants";
-
 import { ArrowRightOutlined } from "@ant-design/icons";
+import useAuthKeycloak from "../../src/store/useAuthKeycloak.js";
+import axios from "axios";
+import {
+  Stack,
+  Button,
+  Heading,
+  Image,
+  Card,
+  CardBody,
+  Divider,
+  CardFooter,
+  Text,
+} from "@chakra-ui/react";
 
-import { Avatar, Card } from "antd";
-
-const { Meta } = Card;
 //^ buradaki id title gibi bilgilere göre api yi düzenleyip uygun veriyi gösterebiliriz
 //^ title da bu mantıkla geliyor zaten
 //^ ekstra çok düzenlemeye gerek yok bu kısımda
 const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
+  const { token } = useAuthKeycloak();
+  console.log("token: ---------- ", token);
 
   const [supplierList, setSupplierList] = useState([]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
+  // const instance = axios.create({
+  //   baseURL: "http://157.230.84.216:3000",
+  //   timeout: 1000,
+  //   headers: {'Authorization': 'Bearer '+token}
+  // });
+
   useEffect(() => {
     getSuppliers();
-
   }, []);
 
   console.log(supplierList);
 
-  console.log(`/suppliers/${id}`)
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  //* we are taking the id about categories
+  //* we wanna show the advertisements about this categories
+  //* so, we need to get advertisement
+  //^we already take the id from the super class which is our category id
+  //^this is equal in our advertisement table to category_id
+
   const getSuppliers = async () => {
     try {
-      //  const data = await baseService.get(`/suppliers/${id}`);
-      const data = await baseService.get(`/suppliers/`);
+      //* I am fetching the all advertisement data here
+      //* category_id (advertisement) === id(category)
+      //* if it is like that render that so we need to check this part actually
+
+      //  const data = await baseService.get("/advertisements" , headers);
+      //! important part
+      const data = await axios
+        .get(`${import.meta.env.VITE_BASE_URL}/advertisements`, { headers })
+        .then((response) => {
+          return response.data;
+        });
+
+      console.log(data);
+
+      //^ checking the data array and look the category_id is our id and if it is it will return an array
+      let data_filter = data.filter((x) => x.categoryId === 1);
+      console.log(data_filter);
+      //^ then, we are map this array and render in out page
+      //^data.data.map => data_filter.map olarak degısecek
       const _data = data.map((item) => {
-        const { id, companyName, contactTitle, address } = item;
+        const {
+          id,
+          advertisementTitle,
+          description,
+          price,
+          createdAt,
+          user_id,
+        } = item;
         return {
           id,
-          companyName,
-          contactTitle,
-          country: address?.country,
+          advertisementTitle,
+          description,
+          price,
+          createdAt,
+          user_id,
         };
       });
       setSupplierList(_data);
@@ -48,11 +99,12 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
     }
   };
 
-
   const goToDetail = (x) => {
-    navigate(`/services/${id}/${x}`, { state: "Derya" });
-
-    window.history.pushState(null, '', `/services/${id}/${x}`);
+    navigate(
+      `/services/${id}/${x}`
+      //{ state: "deryaa" }
+    );
+    window.history.pushState(null, "", `/services/${id}/${x}`);
   };
 
   return (
@@ -79,38 +131,35 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
           style={{ maxWidth: 1200 }}
           className="mx-auto grid grid-cols-3 max-md:grid-rows-4 max-md:grid-cols-1 grid-rows-3 p-5 max-lg:px-5 gap-2"
         >
-          {/* <Spin tip="Loading..." spinning={isLoading}>
-          <Table columns={columns} dataSource={supplierList} rowKey={"id"} />
-        </Spin>  */}
-
           {supplierList.map((e, i) => {
             return (
-              <Card 
-              key={i}
-                style={{
-                  width: 300,
-                }}
-                cover={
-                  <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              <Card maxW="ml" width="300px" height="480px" key={i}>
+                <CardBody height="500px">
+                  <Image
+                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                    alt="Green double couch with wooden legs"
+                    borderRadius="lg"
                   />
-                }
-                actions={[
-                 
-                    <Button type="link" onClick={() => goToDetail(e.id)} icon = {  <ArrowRightOutlined /> } >
-                      Go to Detail
-                    </Button>
-                
-                ]}
-              >
-                <Meta
-                  avatar={
-                    <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                  }
-                  title={e.contactTitle}
-                  description={e.companyName}
-                />
+                  <Stack mt="1" spacing="1">
+                    <Heading height="25px" size="sm">
+                      {e.advertisementTitle}
+                    </Heading>
+                    <Text>{e.description}</Text>
+                    <Text color="blue.600" fontSize="xl">
+                      {e.price}
+                    </Text>
+                  </Stack>
+                </CardBody>
+                <Divider />
+                <CardFooter height="250px">
+                  <Button
+                    type="link"
+                    onClick={() => goToDetail(e.id)}
+                    icon={<ArrowRightOutlined />}
+                  >
+                    Go to Detail
+                  </Button>
+                </CardFooter>
               </Card>
             );
           })}
