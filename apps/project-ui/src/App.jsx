@@ -18,7 +18,6 @@ import KeycloakAuth from "./keycloakauth.jsx";
 import Logout from "./logout.jsx";
 import ServiceDetail from "./serviceDetail.jsx";
 import { baseService } from "../components/network/services/baseService";
-import { API_URL } from "../components/network/env/config";
 import CardProfile from "./cardProfile.jsx";
 
 const router = createBrowserRouter([
