@@ -29,7 +29,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
     setViewSideNav(false);
   };
 
-  const {setLogout, isLogin} = useAuthKeycloak()
+  const { setLogout, isLogin } = useAuthKeycloak()
 
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
         setWhenScroll("bg-black");
         setlogo("D.png");
         setTextColor("text-white");
-     
+
       } else {
         setWhenScroll("transparent");
         setTextColor("text-white");
@@ -54,7 +54,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
       0
     );
     setTotalQty(totalQuantity);
-    let total = cartItems.map((e, ) => {
+    let total = cartItems.map((e,) => {
       return e.quantity * e.price;
     });
     let totalPrice = total.reduce((acc, product) => acc + product, 0);
@@ -105,9 +105,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             {totalQty > 0 ? (
               <div>
                 <div
-                  className={`p-6 ${
-                    checkOut ? "max-sm:pb-48" : "max-sm:pb-36"
-                  } flex flex-col gap-5`}
+                  className={`p-6 ${checkOut ? "max-sm:pb-48" : "max-sm:pb-36"
+                    } flex flex-col gap-5`}
                 >
                   {cartItems.map((e, i) => {
                     if (e.quantity > 0) {
@@ -231,9 +230,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
         className={
           showCase1Page
             ? " top-0 left-0 right-0 absolute"
-            : `${navBar2 ? "bg-white shadow-xl" : whenScroll} ${
-                whenScroll === "bg-white" ? "shadow-l" : ""
-              } transition-all fixed top-0 left-0 right-0 `
+            : `${navBar2 ? "bg-white shadow-xl" : whenScroll} ${whenScroll === "bg-white" ? "shadow-l" : ""
+            } transition-all fixed top-0 left-0 right-0 `
         }
       >
         <nav
@@ -242,7 +240,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
         >
           <Link onClick={scrollToTop} to="/">
             <img
-              src= "/D.png"
+              src="/D.png"
               className="w-24 max-lg:w-24 border"
               alt="D"
             />
@@ -251,9 +249,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             className={
               showCase1Page
                 ? "text-xl  max-lg:hidden justify-center items-center gap-8 text-white"
-                : `${
-                    navBar2 ? "text-black" : textColor
-                  } text-xl flex max-lg:hidden justify-center items-center gap-8`
+                : `${navBar2 ? "text-black" : textColor
+                } text-xl flex max-lg:hidden justify-center items-center gap-8`
             }
           >
             <Link
@@ -261,16 +258,16 @@ const NavBar = ({ navBar2, showCase1Page }) => {
               className="hover:text-red-500 transition-all"
               to="/"
             >
-             ANASAYFA
+              ANASAYFA
             </Link>
             <Link
               onClick={scrollToTop}
               className="hover:text-red-500 transition-all"
               to="/Services"
             >
-        KEŞFET
+              KEŞFET
             </Link>
-            
+
             <Link
               onClick={scrollToTop}
               className="hover:text-red-500 transition-all"
@@ -278,6 +275,15 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             >
               MENTOR NEDİR?
             </Link>
+            {/*             
+            <Link
+              onClick={scrollToTop}
+              className="hover:text-red-500 transition-all"
+              to="/admin/dashboard"
+            >
+              ADMİN
+            </Link>
+             */}
             <div
               className="relative cursor-pointer  transition-all"
               onClick={() => {
@@ -287,9 +293,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
               {totalQty > 0 ? (
                 // <div className="absolute bg-red-500 pt-[0.5px] text-white rounded-full h-[18px]   min-w-[18px] -right-[10px] text-xs font-medium text-center -top-[10px] flex justify-center items-center">
                 <p
-                  className={`absolute bg-red-500 pt-[1.5px] text-white rounded-full h-[18px] px-1   min-w-[18px] ${
-                    totalQty >= 100 ? "-right-[15px]" : "-right-[10px]"
-                  }  text-xs font-medium text-center -top-[10px]`}
+                  className={`absolute bg-red-500 pt-[1.5px] text-white rounded-full h-[18px] px-1   min-w-[18px] ${totalQty >= 100 ? "-right-[15px]" : "-right-[10px]"
+                    }  text-xs font-medium text-center -top-[10px]`}
                 >
                   {totalQty}
                 </p>
@@ -315,12 +320,11 @@ const NavBar = ({ navBar2, showCase1Page }) => {
               padding={"px-5  py-2"}
             />}
 
-            
+
           </ul>
           <ul
-            className={`${
-              navBar2 ? "text-black" : textColor
-            } text-xl hidden max-lg:flex justify-center items-center gap-8`}
+            className={`${navBar2 ? "text-black" : textColor
+              } text-xl hidden max-lg:flex justify-center items-center gap-8`}
           >
             <div
               className="relative"
@@ -328,14 +332,13 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                 setModal(true);
               }}
 
-              
+
             >
-              
+
               {totalQty > 0 ? (
                 <p
-                  className={`absolute bg-red-500 pt-[1.5px] text-white rounded-full h-[18px] px-1   min-w-[18px] ${
-                    totalQty >= 100 ? "-right-[15px]" : "-right-[10px]"
-                  }  text-xs font-medium text-center -top-[10px]`}
+                  className={`absolute bg-red-500 pt-[1.5px] text-white rounded-full h-[18px] px-1   min-w-[18px] ${totalQty >= 100 ? "-right-[15px]" : "-right-[10px]"
+                    }  text-xs font-medium text-center -top-[10px]`}
                 >
                   {totalQty}
                 </p>
@@ -354,7 +357,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
           </ul>
 
 
-          
+
         </nav>
       </div>
 
@@ -364,19 +367,17 @@ const NavBar = ({ navBar2, showCase1Page }) => {
           setViewSideNav(!viewSideNav);
         }}
         style={{ zIndex: 99 }}
-        className={`fixed ${
-          viewSideNav ? "translate-x-0" : "-translate-x-full"
-        } top-0 left-0 bottom-0 right-0  bg-black/40`}
+        className={`fixed ${viewSideNav ? "translate-x-0" : "-translate-x-full"
+          } top-0 left-0 bottom-0 right-0  bg-black/40`}
       ></div>
       <nav
         style={{ zIndex: 100 }}
         // style={{ height: 8000 }}
-        className={`fixed top-0 bottom-0 hidden max-lg:block ${
-          viewSideNav ? "translate-x-0" : "-translate-x-full"
-        } bg-white  left-0 w-96 p-5 px-10 max-sm:px-5 max-sm:w-80 z-30 transition-all font-medium`}
+        className={`fixed top-0 bottom-0 hidden max-lg:block ${viewSideNav ? "translate-x-0" : "-translate-x-full"
+          } bg-white  left-0 w-96 p-5 px-10 max-sm:px-5 max-sm:w-80 z-30 transition-all font-medium`}
       >
         <div id="header" className="flex justify-between items-center">
-        <img className="w-36" src="/D.png" alt="D" />
+          <img className="w-36" src="/D.png" alt="D" />
           <div
             onClick={() => {
               setViewSideNav(!viewSideNav);
@@ -426,9 +427,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             >
               <p className="transition-all">Show Cases</p>
               <FaAngleDown
-                className={`${
-                  showcaseDropDown ? "-rotate-180" : "rotate-0"
-                } transition-all `}
+                className={`${showcaseDropDown ? "-rotate-180" : "rotate-0"
+                  } transition-all `}
               />
             </div>
             <ul
@@ -456,9 +456,8 @@ const NavBar = ({ navBar2, showCase1Page }) => {
               </Link>
             </ul>
             <div
-              className={`${
-                showcaseDropDown ? "top-[114px]" : "top-[41px]"
-              } transition-all duration-200 absolute  w-full bg-white h-24`}
+              className={`${showcaseDropDown ? "top-[114px]" : "top-[41px]"
+                } transition-all duration-200 absolute  w-full bg-white h-24`}
             >
               <Link
                 onClick={() => {
