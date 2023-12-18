@@ -17,14 +17,9 @@ import Results from "./results";
 import KeycloakAuth from "./keycloakauth.jsx";
 import Logout from "./logout.jsx";
 import ServiceDetail from "./serviceDetail.jsx";
-import { baseService } from "../components/network/services/baseService";
-
-  import CardProfile from "./cardProfile.jsx";
-import { API_URL } from "../components/network/env/config";
 import "./App.css";
 import AppHeader from "../admin/Components/AppHeader"
 import SideMenu from "../admin/Components/SideMenu"
-import PageContent from "../admin/Components/PageContent"
 import AppFooter from "../admin/Components/AppFooter"
 import Dashboard from "../admin/Pages/Dashbaord/index.jsx";
 import Customers from "../admin/Pages/Customers/index.jsx";
