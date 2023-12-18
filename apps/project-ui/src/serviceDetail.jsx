@@ -148,11 +148,11 @@ const ServiceDetail = () => {
       <div
         style={{
           maxWidth: 1200,
-          height:"fit-content",
+          height: "fit-content",
           gridTemplateColumns: "2fr 1fr",
           gridGap: "10px",
         }}
-        className="mx-auto grid grid-cols-3 max-md:grid-rows-1 max-md:grid-cols-1 grid-rows-3 pb-15 p-5 max-lg:px-5 gap-4"
+        className="mx-auto grid grid-cols-3 max-md:grid-rows-1 max-md:grid-cols-1  pb-15 p-5 max-lg:px-5 gap-4"
       >
         <div
           style={{
@@ -163,7 +163,7 @@ const ServiceDetail = () => {
           }}
         >
           <Spin tip="Loading..." spinning={isLoading}>
-            <Card style={{ width: "90%" }}>
+            <Card style={{ width: "100%" }}>
               <CardHeader
               // style={{
               //   backgroundImage: `url(${background})`,
@@ -218,10 +218,7 @@ const ServiceDetail = () => {
                   },
                 }}
               >
-                <Descriptions
-                  items={infoAdvert}
-                  style={{ padding: "10px", }}
-                />
+                <Descriptions items={infoAdvert} style={{ padding: "10px" }} />
               </CardFooter>
             </Card>
           </Spin>
@@ -239,6 +236,7 @@ const ServiceDetail = () => {
           <button onClick={() => navigate(2)}>Go 2 Forward</button> */}
 
         <div
+
           style={{
             display: "flex",
             justifyContent: "center",
@@ -290,6 +288,99 @@ const ServiceDetail = () => {
                 },
               }}
             ></CardFooter>
+          </Card>
+        </div>
+      </div>
+      <div
+      className="mx-auto grid grid-cols-3 max-md:grid-cols-1  pb-15 p-5 max-lg:px-5 gap-2"
+        style={{
+          margin: "auto",
+          maxWidth: 1200,
+          height: "fit-content",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        <div>
+          <Card maxW="ml" style={{borderRadius:"25px"}}>
+            <CardBody height="500px">
+              <Image
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" //{`https://picsum.photos/id/${e.id}/300/250`}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="1" spacing="1">
+                <Heading height="25px" size="sm"></Heading>
+                <Text>aisldkgjnhfaısj</Text>
+                <Text color="blue.600" fontSize="xl"></Text>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter height="100px">
+              <Button type="link">Go to Detail</Button>
+            </CardFooter>
+          </Card>
+        </div>
+        <div>
+          <Card maxW="ml"  style={{borderRadius:"25px"}}>
+            <CardBody height="500px">
+              <Image
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" //{`https://picsum.photos/id/${e.id}/300/250`}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="1" spacing="1">
+                <Heading height="25px" size="sm"></Heading>
+                <Text>aisldkgjnhfaısj</Text>
+                <Text color="blue.600" fontSize="xl"></Text>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter height="100px">
+              <Button type="link">Go to Detail</Button>
+            </CardFooter>
+          </Card>
+        </div>
+        <div>
+          <Card maxW="ml"  style={{borderRadius:"25px"}}>
+            <CardBody height="500px">
+              <Image
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" //{`https://picsum.photos/id/${e.id}/300/250`}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="1" spacing="1">
+                <Heading height="25px" size="sm"></Heading>
+                <Text>aisldkgjnhfaısj</Text>
+                <Text color="blue.600" fontSize="xl"></Text>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter height="100px">
+              <Button type="link">Go to Detail</Button>
+            </CardFooter>
+          </Card>
+        </div>
+        <div>
+          <Card maxW="ml"   style={{borderRadius:"25px"}} >
+            <CardBody height="500px">
+              <Image
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" //{`https://picsum.photos/id/${e.id}/300/250`}
+                alt="Green double couch with wooden legs"
+                borderRadius="lg"
+              />
+              <Stack mt="1" spacing="1">
+                <Heading height="25px" size="sm"></Heading>
+                <Text>aisldkgjnhfaısj</Text>
+                <Text color="blue.600" fontSize="xl"></Text>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter height="100px">
+              <Button type="link">Go to Detail</Button>
+            </CardFooter>
           </Card>
         </div>
       </div>
