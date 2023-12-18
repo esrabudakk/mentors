@@ -5,3 +5,5 @@ project_ui/dist
 project_ui/node_modules
 
 /.idea
+
+.env
