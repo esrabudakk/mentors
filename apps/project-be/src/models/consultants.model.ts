@@ -37,9 +37,20 @@ export class Consultants extends Entity {
   @property({
     type: 'string',
     required: true,
-    default: ModelStatus.ACTIVE,
+    jsonSchema: {
+      enum: [ModelStatus]
+    }
   })
-  status: ModelStatus;
+  status: string;
+
+  @property({
+    type: 'boolean',
+    required: true,
+    postgresql: {
+      columnName: "is_approved"
+    }
+  })
+  isApproved: boolean;
 
   @property({
     type: 'number',

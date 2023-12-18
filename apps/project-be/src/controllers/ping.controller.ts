@@ -11,7 +11,7 @@ import {UsersRepository} from "../repositories";
 import {UserServiceBindings} from "../keys";
 import {Users} from "../models";
 import {authorize} from "@loopback/authorization";
-import {PermissionKeys} from "../services/constants";
+import {PermissionKeys} from "../services/enums";
 
 /**
  * OpenAPI response for ping()

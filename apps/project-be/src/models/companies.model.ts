@@ -56,6 +56,15 @@ export class Companies extends Entity {
   address: string;
 
   @property({
+    type: 'boolean',
+    required: true,
+    postgresql: {
+      columnName: "is_approved"
+    }
+  })
+  isApproved: boolean;
+
+  @property({
     type: 'number',
     required: true,
     postgresql: {
@@ -68,8 +77,11 @@ export class Companies extends Entity {
     type: 'string',
     required: true,
     default: ModelStatus.ACTIVE,
+    jsonSchema: {
+      enum: [ModelStatus]
+    }
   })
-  status: ModelStatus;
+  status: string;
 
   @property({
     type: 'date',
