@@ -5,8 +5,9 @@ CREATE TABLE users (
   username text NOT NULL,
   email text NOT NULL,
   phone text,
+  image_url text,
   keycloak_uid text not null,
-  status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
+  status text NOT NULL check (status in ('ACTIVE', 'PASSIVE', 'BANNED')),
   about_message text,
   created_at timestamp NOT NULL default now(),
   created_by integer,
@@ -62,6 +63,7 @@ CREATE TABLE advertisements (
   description text NOT NULL,
   price decimal(5,2) NOT NULL,
   currency text NOT NULL,
+  image_url text,
   status text NOT NULL check (status in ('ACTIVE', 'PASSIVE')),
   is_approved boolean NOT NULL,
   user_id integer NOT NULL,
@@ -102,14 +104,14 @@ CREATE TABLE user_roles (
   updated_by integer
 );
 
-CREATE TABLE consultant_type {
+CREATE TABLE consultant_type (
   id serial PRIMARY KEY,
   consultant_name text NOT NULL,
   created_at timestamp NOT NULL default now(),
   created_by integer,
   updated_at timestamp,
   updated_by integer
-}
+);
 
 ALTER TABLE companies ADD FOREIGN KEY (official_user_id) REFERENCES users (id);
 CREATE INDEX ix_companies_official_user_id ON public.companies(official_user_id);
