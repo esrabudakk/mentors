@@ -2,9 +2,10 @@ import {repository} from "@loopback/repository";
 import { UserRolesRepository, UsersRepository} from "../repositories";
 import {jwtDecode} from "jwt-decode";
 import {ModelStatus} from "../models/models-utils";
-import { service } from "@loopback/core";
+import {Binding, BINDING_METADATA_KEY, inject, service} from '@loopback/core';
 import { RolesService } from "./roles.service";
 import {Users} from "../models"
+import {UserServiceBindings} from '../keys';
 
 interface UserData {
     given_name : string,
@@ -13,10 +14,10 @@ interface UserData {
     sub: string
 }
 
-enum RoleNames {
-    ADMIN ='Admin',
-    CLIENT= 'Client',
-    CONSULTANT='Consultant'
+export enum RoleNames {
+    ADMIN ='ADMIN',
+    CLIENT= 'CLIENT',
+    CONSULTANT='CONSULTANT'
 }
 
 export class UserService {
@@ -26,7 +27,8 @@ export class UserService {
         @repository(UserRolesRepository)
         public userRolesRepository: UserRolesRepository,
         @service(RolesService)
-        public rolesService :RolesService
+        public rolesService :RolesService,
+        @inject(UserServiceBindings.USER) public user:Users,
    
     ) {
     }
@@ -78,6 +80,15 @@ export class UserService {
         });
     }
 
+    async getMyProfile(){
+        const user = await this.usersRepository.findById(this.user.id as number, {
+            include: [{relation: 'userRoles',
+            scope: {
+                include: [{relation: 'roles'}]
+            }}]
+        });
 
+        return user
+    }
     
 }

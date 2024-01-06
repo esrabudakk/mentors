@@ -17,7 +17,7 @@ export class AuthenticationService {
             where: {keycloak_uid: payload.sub}
         });
         if (!user)
-            throw new Error('User not found keycloak id' + payload.sub)
+            throw new Error('User not found keycloak id ' + payload.sub)
         return user;
     }
 }

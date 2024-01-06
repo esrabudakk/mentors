@@ -3,7 +3,8 @@ import {inject, Provider} from '@loopback/core';
 import {repository} from '@loopback/repository';
 import {UserServiceBindings} from '../keys';
 import {RolesRepository, UsersRepository} from '../repositories';
-import {Users, UsersRelations} from "../models";
+import {Roles, UserRolesRelations, UserRolesWithRelations, Users, UsersRelations} from '../models';
+import {RoleNames} from './user.service';
 
 export class MyAuthorizationProvider implements Provider<Authorizer> {
     constructor(
@@ -24,14 +25,18 @@ export class MyAuthorizationProvider implements Provider<Authorizer> {
     ) {
         const user = (await this.userRepository.findOne({
             where: {keycloak_uid: this.contextUser.keycloak_uid},
-            include: [{relation: 'userRoles'}],
+            include: [{relation: 'userRoles', scope: {
+                include: [{relation: 'roles'}]
+                }}],
         }));
         if (!user)
             throw new Error('User not found')
 
-        // if (user.userRoles) {
-        //     return AuthorizationDecision.ALLOW;
-        // }
+         const userRoles = user.userRoles as UserRolesWithRelations[]
+
+         if (userRoles[0].roles.roleName === RoleNames.ADMIN) {
+             return AuthorizationDecision.ALLOW;
+         }
 
         if (!user.userRoles) throw new Error('User has not any role')
 

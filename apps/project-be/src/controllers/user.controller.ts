@@ -67,6 +67,22 @@ export class UserController {
   ): Promise<Users> {
     return this.userService.getUserById(id);
   }
+
+  @authorize({allowedRoles: [PermissionKeys.VIEW_OWN_PROFILE]})
+  @get('/users/my-profile')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+        schema: {
+        },
+      },
+    },
+  })
+  async getMyProfile(
+  ): Promise<Users> {
+    return this.userService.getMyProfile();
+  }
 @authorize({allowedRoles: [PermissionKeys.UPDATE_OWN_PROFILE]})
   @patch('/users/my-profile')
   async updateMyProfile(

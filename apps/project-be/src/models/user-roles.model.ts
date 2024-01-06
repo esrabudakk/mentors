@@ -1,5 +1,6 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
 import {Users} from './users.model';
+import {Roles} from './roles.model';
 
 @model({name: 'user_roles', settings: {strict: true}})
 export class UserRoles extends Entity {
@@ -18,15 +19,6 @@ export class UserRoles extends Entity {
     }
   })
   userId: number;
-
-  @property({
-    type: 'number',
-    required: true,
-    postgresql: {
-      columnName: "role_id"
-    }
-  })
-  roleId: number;
 
   @property({
     type: 'date',
@@ -60,13 +52,24 @@ export class UserRoles extends Entity {
   })
   updatedBy?: number;
 
+  @property({
+    type: 'number',
+    postgresql: {
+      columnName: 'role_id',
+    },
+  })
+  roleId: number;
+
+  @belongsTo(() => Roles, { name: 'roles' })
+  role_id: number;
+
   constructor(data?: Partial<UserRoles>) {
     super(data);
   }
 }
 
 export interface UserRolesRelations {
-  // describe navigational properties here
+  roles : Roles
 }
 
 export type UserRolesWithRelations = UserRoles & UserRolesRelations;
