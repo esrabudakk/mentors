@@ -82,12 +82,12 @@ export class AdvertisementsController {
   }
 
   @authorize({allowedRoles: [PermissionKeys.APPROVE_ADVERTISEMENT]})
-  @patch('/advertisements/{id}')
+  @patch('/advertisements/{id}/approval')
   async updateAdvertisementApproved(
       @param.path.number('id') id:number,
-      @requestBody() isApproved: boolean
+      @requestBody()  isApproved: {isApproved: boolean}
   ) {
-    await this.advertisementService.updateAdvertisementApproved(id, isApproved);
+    await this.advertisementService.updateAdvertisementApproved(id, isApproved.isApproved);
   }
 
 
