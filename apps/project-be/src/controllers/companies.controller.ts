@@ -79,12 +79,12 @@ import {PermissionKeys} from "../services/enums";
     }
 
       @authorize({allowedRoles: [PermissionKeys.APPROVE_COMPANY]})
-      @patch('/companirs/{id}')
+      @patch('/companies/{id}/approval')
       async updateCompanyApproved(
           @param.path.number('id') id:number,
-          @requestBody() isApproved: boolean
+          @requestBody() isApproved: {isApproved: boolean}
       ) {
-          await this.companiesService.updateCompanyApproved(id, isApproved);
+          await this.companiesService.updateCompanyApproved(id, isApproved.isApproved);
       }
   }
   
