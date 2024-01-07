@@ -1,6 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({name: 'consultant_type',settings: {strict: true}})
+
 export class ConsultantType extends Entity {
   @property({
     type: 'number',

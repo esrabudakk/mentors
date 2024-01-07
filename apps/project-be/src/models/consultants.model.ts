@@ -14,10 +14,10 @@ export class Consultants extends Entity {
     type: 'string',
     required: true,
     postgresql: {
-      columnName: "consultant_type"
+      columnName: "consultant_type_id"
     }
   })
-  consultantType: string;
+  consultantTypeId: string;
 
   @property({
     type: 'string',

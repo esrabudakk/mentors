@@ -1,5 +1,5 @@
 import {repository} from "@loopback/repository";
-import {ConsultantsRepository} from "../repositories";
+import {ConsultantsRepository, ConsultantTypeRepository} from "../repositories";
 import {Consultants, Users} from "../models";
 import {ModelStatus} from "../models/models-utils";
 import {inject} from "@loopback/core";
@@ -11,7 +11,7 @@ enum ConsultantType {
     STARTUP_ADVISOR = "Startup Advisor"
 }
 
-export interface ConsultantDTO extends Pick<Consultants, 'consultantType'| 'careerInformation'| 'education'> {
+export interface ConsultantDTO extends Pick<Consultants, 'consultantTypeId'| 'careerInformation'| 'education'> {
 
 }
 
@@ -19,6 +19,8 @@ export class ConsultantsService {
     constructor(
         @repository(ConsultantsRepository)
         public consultantsRepository: ConsultantsRepository,
+        @repository(ConsultantTypeRepository)
+        public consultantTypeRepository: ConsultantTypeRepository,
         @inject(UserServiceBindings.USER) public user: Users
     ) {
     }
@@ -26,6 +28,7 @@ export class ConsultantsService {
    async createConsultant(newConsultantData : ConsultantDTO){
     const createdConsultant = await this.consultantsRepository.create({
         ...newConsultantData,
+        isApproved: false,
         status: ModelStatus.PASSIVE,
         userId: this.user.id,
         createdAt: new Date().toISOString(),
@@ -44,4 +47,10 @@ export class ConsultantsService {
             isApproved: newApprovedStatus
         })
     }
+
+    async getConsultantTypes(){
+        return this.consultantTypeRepository.find()
+    }
+
+
 }

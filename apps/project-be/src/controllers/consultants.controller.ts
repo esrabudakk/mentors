@@ -1,10 +1,9 @@
 // Uncomment these imports to begin using these cool features!
 
-import { inject, service } from "@loopback/core";
-import { ConsultantDTO, ConsultantsService } from "../services/consultants.service";
-import { post, response, getModelSchemaRef, requestBody, param, patch } from "@loopback/rest";
-import { Categories, Consultants, Users } from "../models";
-import { UserServiceBindings } from "../keys";
+import {service} from "@loopback/core";
+import {ConsultantDTO, ConsultantsService} from "../services/consultants.service";
+import {get, getModelSchemaRef, param, patch, post, requestBody, response} from "@loopback/rest";
+import {Consultants, ConsultantType} from "../models";
 import {authorize} from "@loopback/authorization";
 import {PermissionKeys} from "../services/enums";
 
@@ -63,4 +62,21 @@ export class ConsultantsController {
   ) {
     await this.consultantsService.updateConsultantApproved(id, isApproved);
   }
+
+  @authorize({allowedRoles: [PermissionKeys.CREATE_CONSULTANT_PROFILE]})
+  @get('/consultant-type')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+        schema: {
+        },
+      },
+    },
+  })
+  async getConsultantType(
+  ): Promise<ConsultantType[]> {
+    return this.consultantsService.getConsultantTypes();
+  }
+
 }
