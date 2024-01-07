@@ -1,9 +1,16 @@
 import {repository} from "@loopback/repository";
-import {ConsultantsRepository, ConsultantTypeRepository} from "../repositories";
+import {
+    ConsultantsRepository,
+    ConsultantTypeRepository,
+    RolesRepository,
+    UserRolesRepository,
+    UsersRepository
+} from "../repositories";
 import {Consultants, Users} from "../models";
 import {ModelStatus} from "../models/models-utils";
 import {inject} from "@loopback/core";
 import {UserServiceBindings} from "../keys";
+import {RoleNames} from "./user.service";
 
 enum ConsultantType {
     FINANCIAL_CONSULTANT = "Financial Consultant",
@@ -21,6 +28,10 @@ export class ConsultantsService {
         public consultantsRepository: ConsultantsRepository,
         @repository(ConsultantTypeRepository)
         public consultantTypeRepository: ConsultantTypeRepository,
+        @repository(UserRolesRepository)
+        public userRolesRepository: UserRolesRepository,
+        @repository(RolesRepository)
+        public rolesRepository: RolesRepository,
         @inject(UserServiceBindings.USER) public user: Users
     ) {
     }
@@ -34,6 +45,17 @@ export class ConsultantsService {
         createdAt: new Date().toISOString(),
         createdBy: this.user.id
     });
+
+    const foundRole = await this.rolesRepository.findOne({
+        where: {roleName: RoleNames.CONSULTANT}
+    });
+    if (!foundRole)
+        throw new Error('Role not found')
+
+       await this.userRolesRepository.updateAll(
+           { roleId: foundRole.id },
+           { userId: this.user.id }
+       );
     return createdConsultant;
    }
 

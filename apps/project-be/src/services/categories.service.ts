@@ -1,6 +1,6 @@
 import {injectable, /* inject, */ BindingScope} from '@loopback/core';
 import { repository } from '@loopback/repository';
-import { CategoriesRepository } from '../repositories';
+import {AdvertisementsRepository, CategoriesRepository} from '../repositories';
 
 
 @injectable({scope: BindingScope.TRANSIENT})
@@ -8,6 +8,8 @@ export class CategoriesService {
   constructor(
     @repository(CategoriesRepository)
     public categoriesRepository: CategoriesRepository,
+    @repository(AdvertisementsRepository)
+    public advertisementsRepository: AdvertisementsRepository
   ) {}
 
   async getCategories (){
@@ -15,4 +17,7 @@ export class CategoriesService {
     return foundCategories;
   }
 
+  async getAdvertisementsByCategoryId(id:number){
+    return this.advertisementsRepository.find({where: {categoryId: id}})
+  }
 }
