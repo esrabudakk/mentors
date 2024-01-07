@@ -6,8 +6,8 @@ import { EditOutlined, SaveOutlined } from '@ant-design/icons'; // Edit ve Save 
 
 const UserProfilePage = () => {
     const [userData, setUserData] = useState(null);
-    const [editing, setEditing] = useState(false); // State, düzenleme modunu izler
-    const [updatedUserData, setUpdatedUserData] = useState(null); // Güncellenmiş kullanıcı verileri
+    const [editing, setEditing] = useState(false);
+    const [updatedData, setUpdatedData] = useState(null);
     const { token } = useAuthKeycloak();
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const UserProfilePage = () => {
                     },
                 });
                 setUserData(response.data);
-                setUpdatedUserData(response.data); // Düzenlenmiş kullanıcı verilerini güncel veriyle başlat
+                setUpdatedData(response.data);
             } catch (error) {
                 console.error('Error fetching user profile:', error);
             }
@@ -30,16 +30,21 @@ const UserProfilePage = () => {
 
     const handleEdit = () => {
         setEditing(true);
+        setUpdatedData(userData);
     };
 
     const handleSave = async () => {
         try {
-            await axios.patch(`${import.meta.env.VITE_BASE_URL}/users/my-profile`, {updatedUserData}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setUserData(updatedUserData);
+            await axios.patch(
+                `${import.meta.env.VITE_BASE_URL}/my-profile`,
+                { phone: updatedData.phone, username: updatedData.username, aboutMessage: updatedData.aboutMessage },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setUserData(updatedData);
             setEditing(false);
         } catch (error) {
             console.error('Error updating user profile:', error);
@@ -48,7 +53,7 @@ const UserProfilePage = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedUserData({ ...updatedUserData, [name]: value });
+        setUpdatedData({ ...updatedData, [name]: value });
     };
 
     return (
@@ -67,14 +72,17 @@ const UserProfilePage = () => {
                                 <EditOutlined onClick={handleEdit} style={{ marginLeft: '8px', cursor: 'pointer' }} />
                             )}
                         </h1>
-                        <p>Username: {userData.username}</p>
-                        <p>Email: {userData.email}</p>
-                        <p>Phone: {userData.phone}</p>
-                        <p>Status: {userData.status}</p>
-                        {editing && (
+                        {!editing ? (
                             <>
-                                <input type="text" name="aboutMessage" value={updatedUserData.aboutMessage} onChange={handleChange} />
-                                {/* Diğer gerekli input alanları buraya eklenebilir */}
+                                <p>Phone: {userData.phone}</p>
+                                <p>Username: {userData.username}</p>
+                                <p>About: {userData.aboutMessage}</p>
+                            </>
+                        ) : (
+                            <>
+                                <input type="text" name="phone" value={updatedData.phone} onChange={handleChange} />
+                                <input type="text" name="username" value={updatedData.username} onChange={handleChange} />
+                                <input type="text" name="aboutMessage" value={updatedData.aboutMessage} onChange={handleChange} />
                             </>
                         )}
                     </div>
