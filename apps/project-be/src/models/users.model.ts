@@ -68,6 +68,14 @@ export class Users extends Entity {
   aboutMessage?: string;
 
   @property({
+    type: 'string',
+    postgresql: {
+      columnName: "image_url"
+    }
+  })
+  imageUrl?: string;
+
+  @property({
     type: 'date',
     postgresql: {
       columnName: "created_at"

@@ -75,6 +75,14 @@ export class Advertisements extends Entity {
   categoryId: number;
 
   @property({
+    type: 'string',
+    postgresql: {
+      columnName: "image_url"
+    }
+  })
+  imageUrl?: string;
+
+  @property({
     type: 'date',
     postgresql: {
       columnName: "created_at"

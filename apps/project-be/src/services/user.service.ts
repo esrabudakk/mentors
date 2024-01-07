@@ -71,7 +71,7 @@ export class UserService {
         return this.usersRepository.findById(userId)
     }
 
-    async updateMyProfile( newUserData:Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage'> ){
+    async updateMyProfile( newUserData:Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage' | 'imageUrl'> ){
         await this.usersRepository.updateById(this.user.id as number, {
             ...newUserData
         });
