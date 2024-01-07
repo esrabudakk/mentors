@@ -16,7 +16,8 @@ import {PermissionKeys} from "../services/enums";
 export class UserController {
   constructor(
    @service(UserService)
-   public userService : UserService
+   public userService : UserService,
+
   ) {}
 
   @post('/public/users')
@@ -84,11 +85,10 @@ export class UserController {
     return this.userService.getMyProfile();
   }
 @authorize({allowedRoles: [PermissionKeys.UPDATE_OWN_PROFILE]})
-  @patch('/users/my-profile')
+  @patch('/my-profile')
   async updateMyProfile(
-    @param.path.number('id') id:number,
     @requestBody() newUserData: Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage'>
   ) {
-    await this.userService.updateMyProfile(id, newUserData);
+    await this.userService.updateMyProfile(newUserData);
   }
 }
