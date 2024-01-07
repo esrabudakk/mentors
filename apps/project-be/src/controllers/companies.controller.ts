@@ -29,6 +29,7 @@ import {PermissionKeys} from "../services/enums";
       @requestBody({
         content: {
           'application/json': {
+              schema: getModelSchemaRef(Companies, {partial: true})
           },
         },
       })

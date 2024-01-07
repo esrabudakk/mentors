@@ -17,8 +17,10 @@ export class CompaniesService {
 
     //TODO : zod schema ekle official_user_id yok
     async createMyCompany(newCompanyData: Companies){
+
         const createdCompany = await this.companiesRepository.create({
             ...newCompanyData,
+            isApproved: false,
             officialUserId: this.user.id,
             status: ModelStatus.PASSIVE,
             createdAt: new Date().toISOString(),
