@@ -129,7 +129,7 @@ const HomePage = () => {
               <p className="text-xl">
                 Birçok freelancer çalışan kadromuzla iş sürecinizi profesyonel bir şekilde yönetmek için
               </p>
-              <Link onClick={scrollToTop} to={"/about"}>
+              <Link onClick={scrollToTop} to={"/listProfile"}>
                 <Button
                   content={"Hemen Başla"}
                   fontSize={"text-xl"}

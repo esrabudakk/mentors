@@ -19,6 +19,8 @@ import Logout from "./logout.jsx";
 import ServiceDetail from "./serviceDetail.jsx";
 import { baseService } from "../components/network/services/baseService";
 import CardProfile from "./cardProfile.jsx";
+import ListProfile from "./listProfile.jsx";
+import EditProfile from "./editProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -163,6 +165,26 @@ const router = createBrowserRouter([
       <>
         <NavBar/>
         <Contact/>
+        <Footer/>
+      </>
+    ),
+  },
+  {
+    path: "/listProfile",
+    element: (
+      <>
+        <NavBar/>
+        <ListProfile/>
+        <Footer/>
+      </>
+    ),
+  },
+  {
+    path: "/listProfile/:id",
+    element: (
+      <>
+        <NavBar/>
+        <EditProfile/>
         <Footer/>
       </>
     ),

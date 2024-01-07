@@ -10,6 +10,18 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+
+  PopoverTrigger,
+   PopoverContent,
+      PopoverFooter,
+ PopoverHeader,
+PopoverArrow,
+PopoverCloseButton,
+PopoverBody,
+ButtonGroup,
+Popover,
+Box,
+
 } from "@chakra-ui/react";
 import { formatCompactNumber } from "../../constants/formatNumber";
 import { scrollToTop } from "../../constants/scrollToTop";
@@ -280,41 +292,80 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             </Link>
             <div
               className="relative cursor-pointer  transition-all"
-              onClick={() => {
-                setModal(true);
-              }}
+             
             >
-              {totalQty > 0 ? (
-                // <div className="absolute bg-red-500 pt-[0.5px] text-white rounded-full h-[18px]   min-w-[18px] -right-[10px] text-xs font-medium text-center -top-[10px] flex justify-center items-center">
-                <p
-                  className={`absolute bg-red-500 pt-[1.5px] text-white rounded-full h-[18px] px-1   min-w-[18px] ${
-                    totalQty >= 100 ? "-right-[15px]" : "-right-[10px]"
-                  }  text-xs font-medium text-center -top-[10px]`}
-                >
-                  {totalQty}
-                </p>
-              ) : (
-                ""
-              )}
-              <FaShoppingCart />
+             
+        
+
+
+              <Popover
+     
+     placement='bottom'
+     closeOnBlur={false}
+   >
+     <PopoverTrigger>
+       <Button
+               content={"KAYDOL"}
+               fontSize={"text-xl"}
+               fontWeight={""}
+               padding={"px-5  py-2"}
+             />
+     </PopoverTrigger>
+     <PopoverContent color='white' bg='#8C8C8C' borderColor='gray.500 ' width={330} height={310}>
+       <PopoverHeader pt={5} fontWeight='bold' border='1'>
+       Neye ihtiyacın var ?
+       </PopoverHeader>
+       <PopoverArrow bg='white' />
+       <PopoverCloseButton />
+       <PopoverBody>
+        Freelancer olarak ilerleyip kendi işlerini yürütebilirsin. Ayrıca, Kurumsal bir şirkette çalışıyorsan ve yetkiliysen şikretin için bir Mentor bulabilirsin.
+       </PopoverBody>
+       <PopoverFooter
+         border='0'
+         display='flex'
+         alignItems='center'
+         justifyContent='space-between'
+         pb={4}
+       >
+         <Box fontSize='sm'></Box>
+         
+         <ButtonGroup size='sm'>
+         {!isLogin && <Link onClick={scrollToTop} to="/keycloak-auth">
+             <Button
+               content={"Freelancer ol"}
+               fontSize={"2"}
+               fontWeight={""}
+               padding={"px-1 py-2"}
+             />
+           </Link>}
+           {isLogin && <Button
+             onClick={() => setLogout()}
+             content={"Çıkış yap"}
+             fontSize={"11"}
+             fontWeight={""}
+             padding={"px-5  py-3"}
+           />}
+         
+         </ButtonGroup>
+         <ButtonGroup size='sm'>
+         {!isLogin && <Link onClick={scrollToTop} to="/keycloak-auth">
+             <Button
+            
+               content={"Firma Yetkilisi ol"}
+               fontSize={"11"}
+               fontWeight={""}
+               padding={"px-1 py-2"}
+             />
+           </Link>}
+         
+         
+         </ButtonGroup>
+       </PopoverFooter>
+     </PopoverContent>
+   </Popover>
+
             </div>
-
-            {!isLogin && <Link onClick={scrollToTop} to="/keycloak-auth">
-              <Button
-                content={"KAYDOL"}
-                fontSize={"text-xl"}
-                fontWeight={""}
-                padding={"px-5  py-2"}
-              />
-            </Link>}
-            {isLogin && <Button
-              onClick={() => setLogout()}
-              content={"Logout"}
-              fontSize={"text-xl"}
-              fontWeight={""}
-              padding={"px-5  py-2"}
-            />}
-
+      
             
           </ul>
           <ul

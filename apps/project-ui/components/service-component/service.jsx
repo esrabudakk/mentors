@@ -134,7 +134,7 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
           {supplierList.map((e, i) => {
             return (
               <Card maxW="ml" width="300px" height="480px" key={i}>
-                <CardBody height="500px">
+                <CardBody height="480px">
                   <Image
                     src= {`https://picsum.photos/id/${e.id}/300/250`}
                     // "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -142,11 +142,11 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
                     borderRadius="lg"
                   />
                   <Stack mt="1" spacing="1">
-                    <Heading height="25px" size="sm">
+                    <Heading height="25px" size="sm" mb="5">
                       {e.advertisementTitle}
                     </Heading>
                     <Text>{e.description}</Text>
-                    <Text color="blue.600" fontSize="xl">
+                    <Text color="blue.600" fontSize="l">
                       {e.price}
                     </Text>
                   </Stack>
