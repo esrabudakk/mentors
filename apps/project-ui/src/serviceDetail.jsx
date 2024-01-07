@@ -34,7 +34,6 @@ const ServiceDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { token } = useAuthKeycloak();
-  console.log("token: ---------- ", token);
 
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -45,7 +44,6 @@ const ServiceDetail = () => {
     getUser();
   }, []);
 
-  console.log(users.data);
 
   const getData = async () => {
     const data = await axios.get(

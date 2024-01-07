@@ -25,7 +25,6 @@ import {
 //^ ekstra çok düzenlemeye gerek yok bu kısımda
 const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
   const { token } = useAuthKeycloak();
-  console.log("token: ---------- ", token);
 
   const [supplierList, setSupplierList] = useState([]);
   const navigate = useNavigate();
@@ -62,16 +61,14 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
       //  const data = await baseService.get("/advertisements" , headers);
       //! important part
       const data = await axios
-        .get(`${import.meta.env.VITE_BASE_URL}/advertisements`, { headers })
+        .get(`${import.meta.env.VITE_BASE_URL}/categories/${id}/advertisements`, { headers })
         .then((response) => {
           return response.data;
         });
 
-      console.log(data);
 
       //^ checking the data array and look the category_id is our id and if it is it will return an array
       let data_filter = data.filter((x) => x.categoryId === 1);
-      console.log(data_filter);
       //^ then, we are map this array and render in out page
       //^data.data.map => data_filter.map olarak degısecek
       const _data = data.map((item) => {
@@ -82,6 +79,7 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
           price,
           createdAt,
           user_id,
+          imageUrl
         } = item;
         return {
           id,
@@ -90,6 +88,7 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
           price,
           createdAt,
           user_id,
+          imageUrl
         };
       });
       setSupplierList(_data);
@@ -136,9 +135,8 @@ const ServicePage = ({ id, title, breif, descr, imageSrc }) => {
               <Card maxW="ml" width="300px" height="480px" key={i}>
                 <CardBody height="500px">
                   <Image
-                    src= {`https://picsum.photos/id/${e.id}/300/250`}
+                    src= {`${e.imageUrl}`}
                     // "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                    alt="Green double couch with wooden legs"
                     borderRadius="lg"
                   />
                   <Stack mt="1" spacing="1">
