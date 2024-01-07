@@ -15,9 +15,11 @@ import { formatCompactNumber } from "../../constants/formatNumber";
 import { scrollToTop } from "../../constants/scrollToTop";
 import useAuthKeycloak from "../../src/store/useAuthKeycloak.js";
 import axios from "axios";
+import useModalStore from "../../src/store/useModal.js";
+import BeConsultantModal from "../be-consultant/beConsultantModal.jsx";
 const NavBar = ({navBar2, showCase1Page}) => {
 
-
+    const { openModal} = useModalStore()
   const [totalQty, setTotalQty] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
   const {cartItems, setCartItems, modal, setModal} =
@@ -352,7 +354,19 @@ const NavBar = ({navBar2, showCase1Page}) => {
                   fontSize={"text-xl"}
                   fontWeight={""}
                   padding={"px-5  py-2"}
-              />}
+              />
+              }
+                {
+                    isLogin && <Button
+                        onClick={() => {
+                            openModal(<BeConsultantModal/>)
+                        }}
+                        content={"Danisman Ol"}
+                        fontSize={"text-xl"}
+                        fontWeight={""}
+                        padding={"px-5  py-2"}
+                    />
+                }
 
 
             </ul>
@@ -512,6 +526,21 @@ const NavBar = ({navBar2, showCase1Page}) => {
                 >
                   <Button
                       content={"KAYDOL"}
+                      fontSize={""}
+                      padding={"py-[6px] px-3"}
+                      furtherClasses={" mt-4"}
+                  />
+                </Link>
+                  <Link
+                    onClick={() => {
+                      hideNav();
+                      scrollToTop();
+                    }}
+                    to={"/contact"}
+                    className="hover:text-red-500 transition-all w-full block"
+                >
+                  <Button
+                      content={"Danisman Ol"}
                       fontSize={""}
                       padding={"py-[6px] px-3"}
                       furtherClasses={" mt-4"}
