@@ -170,21 +170,7 @@ const router = createBrowserRouter([
     ),
   },
 
-  {
-    path: "/admin/dashboard",
-    element: (
-      <>
-        <div className="App">
-          <AppHeader />
-          <div className="SideMenuAndPageContent">
-            <SideMenu></SideMenu>
-            <Dashboard />
-          </div>
-          <AppFooter />
-        </div>
-      </>
-    ),
-  },
+ 
   {
     path: "/listProfile",
     element: (
