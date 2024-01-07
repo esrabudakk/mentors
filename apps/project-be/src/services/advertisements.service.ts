@@ -5,7 +5,7 @@ import { UserServiceBindings } from '../keys';
 import { Advertisements, Users } from '../models';
 import { ModelStatus } from '../models/models-utils';
 
-export interface AdvertisementsDTO extends Pick<Advertisements, 'advertisementTitle'| 'description'| 'currency'| 'price'| 'status'>{
+export interface AdvertisementsDTO extends Pick<Advertisements, 'advertisementTitle'|  'description'| 'currency'| 'price'| 'status'>{
   categoryName: string
 }
 
@@ -20,19 +20,10 @@ export class AdvertisementsService {
     @inject(UserServiceBindings.USER) public user: Users
   ) {}
 
-  async createAdvertisement(newAdvertisements: AdvertisementsDTO){
+  async createAdvertisement(newAdvertisements: Advertisements){
     
-    const category = await this.categoriesRepository.findOne({where: {categoryType: newAdvertisements.categoryName}});
-    if(!category)
-      throw new Error('Category not found!')
-
     const createdAdvertisements = await this.advertisementsRepository.create({
-      advertisementTitle: newAdvertisements.advertisementTitle,
-      description: newAdvertisements.description,
-      price: newAdvertisements.price,
-      currency: newAdvertisements.currency,
-      status: newAdvertisements.status,
-      categoryId: category.id,
+      ...newAdvertisements,
       userId: this.user.id,
       isApproved: false,
       createdAt: new Date().toISOString(),

@@ -26,10 +26,11 @@ export class AdvertisementsController {
       @requestBody({
         content: {
           'application/json': {
+            schema: getModelSchemaRef(Advertisements, {partial: true})
           },
         },
       })
-      newAdvertisements: AdvertisementsDTO
+      newAdvertisements: Advertisements
   ){
     return this.advertisementService.createAdvertisement(newAdvertisements);
   }

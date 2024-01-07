@@ -42,7 +42,7 @@ export class Advertisements extends Entity {
     required: true,
     default: ModelStatus.ACTIVE,
     jsonSchema: {
-      enum: [ModelStatus]
+      enum: [ModelStatus.PASSIVE, ModelStatus.ACTIVE]
     }
   })
   status: string;
