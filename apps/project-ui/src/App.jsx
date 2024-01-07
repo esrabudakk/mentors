@@ -23,6 +23,7 @@ import SideMenu from "../admin/Components/SideMenu"
 import AppFooter from "../admin/Components/AppFooter"
 import Dashboard from "../admin/Pages/Dashbaord/index.jsx";
 import Customers from "../admin/Pages/Customers/index.jsx";
+import Inventory from "../admin/Pages/Inventory/index.jsx";
 
 
 const router = createBrowserRouter([
@@ -172,7 +173,6 @@ const router = createBrowserRouter([
       </>
     ),
   },
-
   {
     path: "/admin/dashboard",
     element: (
@@ -197,6 +197,21 @@ const router = createBrowserRouter([
           <div className="SideMenuAndPageContent">
             <SideMenu></SideMenu>
             <Customers />
+          </div>
+          <AppFooter />
+        </div>
+      </>
+    ),
+  },
+  {
+    path: "/admin/inventory",
+    element: (
+      <>
+        <div className="App">
+          <AppHeader />
+          <div className="SideMenuAndPageContent">
+            <SideMenu></SideMenu>
+            <Inventory />
           </div>
           <AppFooter />
         </div>

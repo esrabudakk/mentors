@@ -29,16 +29,22 @@ function SideMenu() {
         }}
         selectedKeys={[selectedKeys]}
         items={[
+
+          {
+            label: "Şirket Listesi",
+            key: "/admin/customers",
+            icon: <UserOutlined />,
+          },
+          {
+            label: "İlan Listesi",
+            key: "/admin/inventory",
+            icon: <ShopOutlined />,
+          },
+          /*
           {
             label: "Dashbaord",
             icon: <AppstoreOutlined />,
             key: "/admin/dashboard",
-          },
-          /*
-          {
-            label: "Inventory",
-            key: "/inventory",
-            icon: <ShopOutlined />,
           },
           {
             label: "Orders",
@@ -47,11 +53,7 @@ function SideMenu() {
           
           },
         */
-          {
-            label: "Customers",
-            key: "/admin/customers",
-            icon: <UserOutlined />,
-          },
+
         ]}
       ></Menu>
     </div>

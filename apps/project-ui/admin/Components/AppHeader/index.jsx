@@ -1,5 +1,6 @@
 import { BellFilled, MailOutlined } from "@ant-design/icons";
 import { Badge, Drawer, Image, List, Space, Typography } from "antd";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getComments, getOrders } from "../../API";
 
@@ -24,30 +25,29 @@ function AppHeader() {
       <Image
         width={40}
         src="/D.png"
-      ></Image>
+      >
+      </Image>
+
       <Typography.Title level={10} // Başlık seviyesini belirtin (isteğe bağlı)
         style={{ background: '#78bbff', padding: '10px', borderRadius: '20px', margin: '10px' }} // Arka plan rengi ve dolgu ekleyin
       >
-        DMG Dashboard</Typography.Title>
-      <Space>
-        <Badge count={comments.length} dot>
-          <MailOutlined
-            style={{ fontSize: 24 }}
-            onClick={() => {
-              setCommentsOpen(true);
-            }}
-          />
-        </Badge>
-        <Badge count={orders.length}>
-          <BellFilled
-            style={{ fontSize: 24 }}
-            onClick={() => {
-              setNotificationsOpen(true);
-            }}
-          />
-        </Badge>
-      </Space>
-      <Drawer
+        DMG KONTROL PANELİ</Typography.Title>
+      <Typography.Title level={5} // Başlık seviyesini belirtin (isteğe bağlı)
+        style={{ background: '#78bbff', padding: '10px', borderRadius: '20px', margin: '10px' }} // Arka plan rengi ve dolgu ekleyin
+      >
+        <Link
+          onClick={() => {
+            hideNav();
+            scrollToTop();
+          }}
+          to="/"
+          className="hover:text-red-500 transition-all"
+        >
+          Anasayfa
+        </Link></Typography.Title>
+
+      {/**
+       <Drawer
         title="Comments"
         open={commentsOpen}
         onClose={() => {
@@ -62,7 +62,7 @@ function AppHeader() {
           }}
         ></List>
       </Drawer>
-      <Drawer
+       <Drawer
         title="Notifications"
         open={notificationsOpen}
         onClose={() => {
@@ -81,7 +81,8 @@ function AppHeader() {
             );
           }}
         ></List>
-      </Drawer>
+      </Drawer> */}
+
     </div>
   );
 }

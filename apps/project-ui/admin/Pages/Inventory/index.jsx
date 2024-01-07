@@ -1,68 +1,87 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
-import { useEffect, useState } from "react";
-import { getInventory } from "../../API";
+import React, { useState, useEffect } from 'react';
+import { Table, Typography, Spin, Tag, Space, Button } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import useAuthKeycloak from '../../../src/store/useAuthKeycloak';
+import { Link } from "react-router-dom";
 
-function Inventory() {
-  const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+const Inventory = () => {
+  const { token } = useAuthKeycloak();
+  const [veri, setVeri] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { Column } = Table
 
   useEffect(() => {
-    setLoading(true);
-    getInventory().then((res) => {
-      setDataSource(res.products);
-      setLoading(false);
-    });
+    fetchCustomers();
   }, []);
 
-  return (
-    <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Inventory</Typography.Title>
-      <Table
-        loading={loading}
-        columns={[
-          {
-            title: "Thumbnail",
-            dataIndex: "thumbnail",
-            render: (link) => {
-              return <Avatar src={link} />;
-            },
-          },
-          {
-            title: "Title",
-            dataIndex: "title",
-          },
-          {
-            title: "Price",
-            dataIndex: "price",
-            render: (value) => <span>${value}</span>,
-          },
-          {
-            title: "Rating",
-            dataIndex: "rating",
-            render: (rating) => {
-              return <Rate value={rating} allowHalf disabled />;
-            },
-          },
-          {
-            title: "Stock",
-            dataIndex: "stock",
-          },
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/advertisements`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setVeri(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('API Hatası:', error);
+    }
+  };
 
-          {
-            title: "Brand",
-            dataIndex: "brand",
+  const handleApprovalClick = async (id, approvedStatus) => {
+    try {
+
+      const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/advertisements/${id}/approval`,
+        { "isApproved": approvedStatus },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            title: "Category",
-            dataIndex: "category",
-          },
-        ]}
-        dataSource={dataSource}
-        pagination={{
-          pageSize: 5,
-        }}
-      ></Table>
-    </Space>
+        }
+      )
+      fetchCustomers();
+      console.log(`Company ${id} approval successful:`, response.data);
+
+    } catch (error) {
+      console.error(`Error approving company ${id}:`, error);
+    }
+  };
+
+  return (
+    <div className="PageContent">
+      <Space size={20} direction="vertical">
+        <Typography.Title level={4}>İlan Listesi</Typography.Title>
+        <Spin tip="Loading..." spinning={isLoading}>
+          <Table dataSource={veri} className="customized-table">
+            <Column title="Advertisement Title" dataIndex="advertisementTitle" key="advertisementTitle" />
+            <Column title="Description" dataIndex="description" key="description" />
+            <Column title="Price" dataIndex="price" key="price" />
+            <Column title="Currency" dataIndex="currency" key="currency" />
+            <Column
+              title="Approved"
+              dataIndex="isApproved"
+              key="isApproved"
+              render={(isApproved) => (isApproved ? 'Yes' : 'No')}
+            />
+            <Column title="Status" dataIndex="status" key="status" />
+            <Column
+              title="Action"
+              key="action"
+              render={(_, record) => (
+                <Space size="middle">
+                  <Button onClick={() => handleApprovalClick(record.id, !record.isApproved)}>
+                    {record.isApproved ? 'Onayı Kaldır' : 'Onay Ver'}
+                  </Button>
+                </Space>
+              )}
+            />
+
+          </Table>
+        </Spin>
+      </Space>
+    </div>
   );
-}
+};
+
 export default Inventory;

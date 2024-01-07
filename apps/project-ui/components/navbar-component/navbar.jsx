@@ -15,6 +15,8 @@ import { formatCompactNumber } from "../../constants/formatNumber";
 import { scrollToTop } from "../../constants/scrollToTop";
 import useAuthKeycloak from "../../src/store/useAuthKeycloak.js";
 const NavBar = ({ navBar2, showCase1Page }) => {
+  const [userRole, setUserRole] = useState('ADMIN');
+  
   const [totalQty, setTotalQty] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
   const { cartItems, setCartItems, modal, setModal } =
@@ -275,6 +277,16 @@ const NavBar = ({ navBar2, showCase1Page }) => {
             >
               MENTOR NEDİR?
             </Link>
+            {userRole === 'ADMIN' && (
+              <Link
+                onClick={scrollToTop}
+                className="hover:text-red-500 transition-all"
+                to="/admin/customers"
+              >
+                ADMİN
+              </Link>
+            )}
+
             {/*             
             <Link
               onClick={scrollToTop}
