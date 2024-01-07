@@ -17,8 +17,6 @@ import Results from "./results";
 import KeycloakAuth from "./keycloakauth.jsx";
 import Logout from "./logout.jsx";
 import ServiceDetail from "./serviceDetail.jsx";
-import { baseService } from "../components/network/services/baseService";
-import CardProfile from "./cardProfile.jsx";
 import ListProfile from "./listProfile.jsx";
 import EditProfile from "./editProfile.jsx";
 
@@ -154,8 +152,9 @@ const router = createBrowserRouter([
     element: (
       <>
         <NavBar />
-        <Footer />
         <About />
+        <Footer />
+      
       </>
     ),
   },

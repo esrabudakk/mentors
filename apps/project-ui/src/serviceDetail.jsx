@@ -281,7 +281,7 @@ const ServiceDetail = () => {
 
             <CardFooter
               justify="space-between"
-              flexWrap="wrap"
+              flexWrap="wrap" 
               sx={{
                 "& > button": {
                   minW: "136px",

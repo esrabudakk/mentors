@@ -42,10 +42,11 @@ import axios from "axios";
 import { useEffect } from "react";
 const ListProfile = () => {
 
+  //^ idareten bir id aldım 
   let id = 3;
   const [users, setUsers] = useState({});
   const navigate = useNavigate();
-  const [buttonText, setButtonText] = useState('');
+  // const [buttonText, setButtonText] = useState('');
   const { token } = useAuthKeycloak();
 
   const headers = {
@@ -75,14 +76,13 @@ const ListProfile = () => {
   const goToDetail = (x) => {
     navigate(
       `/listProfile/${x}`,
-      { state: buttonText }
     );
     window.history.pushState(null, "", `/listProfile/${x}`);
   };
 
-  const takeInfo = (buttonText) => {
-    setButtonText(buttonText);
-  }
+  // const takeInfo = (buttonText) => {
+  //   setButtonText(buttonText);
+  // }
 
   const initialFocusRef = React.useRef();
 
@@ -110,45 +110,7 @@ const ListProfile = () => {
             className="flex max-lg:flex-col max-lg:items-center gap-10 w-full justify-between items-end mt-4"
           ></motion.div>
 
-          <Popover
-            initialFocusRef={initialFocusRef}
-            placement="bottom"
-            closeOnBlur={false}
-          >
-            <PopoverTrigger>
-              <Button colorScheme="gray" width="500px">
-                Hesap türünü seç!
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent color="white" bg="#8C8C8C" borderColor="gray.500 ">
-              <PopoverHeader pt={5} fontWeight="bold" border="1">
-                Neye ihtiyacın var ?
-              </PopoverHeader>
-              <PopoverArrow bg="white" />
-              <PopoverCloseButton />
-              <PopoverBody>
-                Freelancer olarak ilerleyip kendi işlerini yürütebilirsin.
-                Ayrıca, Kurumsal bir şirkette çalışıyorsan ve yetkiliysen
-                şikretin için bir Mentor bulabilirsin.
-              </PopoverBody>
-              <PopoverFooter
-                border="0"
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-                pb={4}
-              >
-                <Box fontSize="sm"></Box>
-
-                <ButtonGroup size="sm">
-                  <Button colorScheme="white" onClick={() => takeInfo("FREELANCER")}>FREELANCER OL</Button>
-                  <Button colorScheme="blue" onClick={() => takeInfo("FIRMA YETKILISI")} ref={initialFocusRef}>
-                    FİRMA YETKİLİSİ OL
-                  </Button>
-                </ButtonGroup>
-              </PopoverFooter>
-            </PopoverContent>
-          </Popover>
+         
 
           {/* </Reveal> */}
         </div>
