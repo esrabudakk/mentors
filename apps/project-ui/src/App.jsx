@@ -24,6 +24,9 @@ import AppFooter from "../admin/Components/AppFooter"
 import Dashboard from "../admin/Pages/Dashbaord/index.jsx";
 import Customers from "../admin/Pages/Customers/index.jsx";
 import Inventory from "../admin/Pages/Inventory/index.jsx";
+import ConsultantForm from "../components/be-consultant/consultantForm.jsx";
+import CustomModal from "../components/modal/CustomModal.jsx";
+import UserProfilePage from "../components/user-profile-component/userProfile.jsx";
 
 
 const router = createBrowserRouter([
@@ -218,6 +221,24 @@ const router = createBrowserRouter([
       </>
     ),
   },
+    {
+        path: "/be-consultant",
+        element: (
+            <>
+               <button className=''>Company</button>
+               <button>Freelance</button>
+            </>
+        ),
+    },
+
+    {
+        path: "/user-profile",
+        element: (
+            <>
+                <UserProfilePage />
+            </>
+        ),
+    },
 
   {
     path: "*",
@@ -227,7 +248,9 @@ const router = createBrowserRouter([
 
 function App() {
 
-  return <RouterProvider router={router} />
+    return <><RouterProvider router={router} />
+    <CustomModal/>
+    </>
 }
 
 export default App;
