@@ -26,6 +26,7 @@ import Customers from "../admin/Pages/Customers/index.jsx";
 import Inventory from "../admin/Pages/Inventory/index.jsx";
 import ConsultantForm from "../components/be-consultant/consultantForm.jsx";
 import CustomModal from "../components/modal/CustomModal.jsx";
+import UserProfilePage from "../components/user-profile-component/userProfile.jsx";
 
 
 const router = createBrowserRouter([
@@ -226,6 +227,15 @@ const router = createBrowserRouter([
             <>
                <button className=''>Company</button>
                <button>Freelance</button>
+            </>
+        ),
+    },
+
+    {
+        path: "/user-profile",
+        element: (
+            <>
+                <UserProfilePage />
             </>
         ),
     },

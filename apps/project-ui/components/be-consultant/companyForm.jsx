@@ -9,13 +9,16 @@ const CompanyForm = () => {
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
-    const [formSubmitted, setFormSubmitted] = useState(false); // State to manage form submission
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
     const {token} = useAuthKeycloak()
 
     const handleCompanySubmit = async (e) => {
         e.preventDefault();
 
         try {
+             setIsLoading(true)
             const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/companies/my-company`, {
                 companyTitle,
                 taxNumber,
@@ -28,6 +31,8 @@ const CompanyForm = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
+            setIsLoading(false)
 
             console.log('Company created:', response.data);
             setFormSubmitted(true);
@@ -112,7 +117,7 @@ const CompanyForm = () => {
                    className="border rounded px-2 py-1 w-full"
                />
            </div>
-           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+           <button disabled={isLoading} type="submit" className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-100">
                Submit
            </button>
        </form>) : (

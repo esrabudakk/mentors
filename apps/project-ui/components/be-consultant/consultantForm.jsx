@@ -7,17 +7,20 @@ const ConsultantForm = () => {
     const [careerInformation, setCareerInformation] = useState('');
     const [education, setEducation] = useState('');
     const [consultantTypes, setConsultantTypes] = useState([]);
-    const [formSubmitted, setFormSubmitted] = useState(false); // State to manage form submission
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const { token } = useAuthKeycloak();
 
     useEffect(() => {
         async function fetchConsultantTypes() {
             try {
+
                 const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/consultant-type`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+
                 setConsultantTypes(response.data);
             } catch (error) {
                 console.error('Error fetching consultant types:', error);
@@ -30,10 +33,12 @@ const ConsultantForm = () => {
     const handleFreelancerSubmit = async (e) => {
         e.preventDefault();
         try {
+            setIsLoading(true)
+
             const response = await axios.post(
                 `${import.meta.env.VITE_BASE_URL}/consultants`,
                 {
-                    consultantTypeId: consultantType, // Updated
+                    consultantTypeId: consultantType,
                     careerInformation : careerInformation,
                     education : education,
                 },
@@ -43,6 +48,8 @@ const ConsultantForm = () => {
                     },
                 }
             );
+            setIsLoading(false)
+
             console.log('Freelancer Consultant created:', response.data);
             setFormSubmitted(true);
         } catch (error) {
@@ -100,15 +107,13 @@ const ConsultantForm = () => {
                         className="border rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
-                >
+                <button disabled={isLoading} type="submit"
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-100">
                     Submit
                 </button>
             </form>) : (
                 <div className="text-green-600 text-center mt-8">
-                <p>Consultant registered successfully!</p>
+                    <p>Consultant registered successfully!</p>
                 </div>
                 )
             }

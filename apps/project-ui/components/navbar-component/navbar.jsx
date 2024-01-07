@@ -17,6 +17,7 @@ import useAuthKeycloak from "../../src/store/useAuthKeycloak.js";
 import axios from "axios";
 import useModalStore from "../../src/store/useModal.js";
 import BeConsultantModal from "../be-consultant/beConsultantModal.jsx";
+import {UserOutlined} from "@ant-design/icons";
 const NavBar = ({navBar2, showCase1Page}) => {
 
     const { openModal} = useModalStore()
@@ -30,9 +31,14 @@ const NavBar = ({navBar2, showCase1Page}) => {
   const [showcaseDropDown, setShowcaseDropDown] = useState(false);
   const [viewSideNav, setViewSideNav] = useState(false);
   const [checkOut, setCheckOut] = useState(false);
+
   const hideNav = () => {
     setViewSideNav(false);
   };
+
+    const handleNavigation = () => {
+        history.push('/user-profile');
+    };
 
   const {setLogout, isLogin, token} = useAuthKeycloak()
   const [userRole, setUserRole] = useState();
@@ -311,15 +317,6 @@ const NavBar = ({navBar2, showCase1Page}) => {
                   </Link>
               )}
 
-              {/*
-            <Link
-              onClick={scrollToTop}
-              className="hover:text-red-500 transition-all"
-              to="/admin/dashboard"
-            >
-              ADMİN
-            </Link>
-             */}
               <div
                   className="relative cursor-pointer  transition-all"
                   onClick={() => {
@@ -356,8 +353,7 @@ const NavBar = ({navBar2, showCase1Page}) => {
                   padding={"px-5  py-2"}
               />
               }
-                {
-                    isLogin && <Button
+                {isLogin && userRole === 'CLIENT'&& <Button
                         onClick={() => {
                             openModal(<BeConsultantModal/>)
                         }}
@@ -367,6 +363,10 @@ const NavBar = ({navBar2, showCase1Page}) => {
                         padding={"px-5  py-2"}
                     />
                 }
+
+                {isLogin && (
+                    <UserOutlined onClick={handleNavigation} />
+                )}
 
 
             </ul>
