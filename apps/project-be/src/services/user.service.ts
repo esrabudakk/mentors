@@ -7,7 +7,7 @@ import { RolesService } from "./roles.service";
 import {Users} from "../models"
 import {UserServiceBindings} from '../keys';
 
-interface UserData {
+export interface UserData {
     given_name : string,
     family_name: string,
     email: string,
@@ -33,35 +33,6 @@ export class UserService {
     ) {
     }
 
-    async createUser(newToken: {token:string}){
-
-        const userData = jwtDecode(newToken.token) as UserData;
-        
-        const foundUser = await this.usersRepository.findOne({where: {keycloak_uid: userData.sub}});
-        if(foundUser)   
-            return;
-        
-        const newUser = await  this.usersRepository.create({
-            firstName: userData.given_name,
-            lastName:userData.family_name,
-            username: userData.email,
-            email:userData.email,
-            keycloak_uid:userData.sub,
-            status: ModelStatus.ACTIVE,
-        });
-
-        const role = await this.rolesService.getRoleByRoleName(RoleNames.CLIENT);
-
-        if(!role)
-            throw new Error('Role not found');
-
-        await this.userRolesRepository.create({
-            userId: newUser.id,
-            roleId: role.id,
-            createdAt: new Date().toISOString(),
-        })
-        return newUser;
-    }
 
     async getUsers(){
       return this.usersRepository.find()
@@ -72,6 +43,8 @@ export class UserService {
     }
 
     async updateMyProfile( newUserData:Pick<Users, 'firstName'| 'lastName'| 'phone' | 'aboutMessage' | 'imageUrl'> ){
+        if (!this.user)
+            throw new Error('User Not found')
         await this.usersRepository.updateById(this.user.id as number, {
             ...newUserData
         });
