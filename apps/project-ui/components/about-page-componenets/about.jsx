@@ -24,9 +24,9 @@ const AboutPage = () => {
           className="flex gap-10 justify-between items-end max-md:items-center px-10 mx-auto max-md:px-5 max-md:flex-col"
         >
           <div className="text-white flex flex-col gap-8 max-md:items-center max-md:text-center">
-            <h1 className="text-5xl font-bold">MENTORLUK HAKKINDA BİLGİ Mİ ARIYORSUN?</h1>
+            <h1 className="text-5xl font-bold">LOOKING FOR INFORMATION ABOUT MENTORING?</h1>
             <p className="text-xl max-w-md">
-            Güven, Uyum ve inovasyon!
+              Trust, Harmony and innovation!
 
 
             </p>
@@ -34,11 +34,11 @@ const AboutPage = () => {
           <div className="flex gap-12 max-sm:text-center text-white">
             <div className="flex max-md:items-center flex-col gap-4">
               <h2 className="text-4xl title-font font-bold">5k+</h2>
-              <p className="text-lg">Kullanıcı</p>
+              <p className="text-lg">User</p>
             </div>
             <div className="flex max-md:items-center flex-col gap-4">
               <h2 className="text-4xl  title-font font-bold">100+</h2>
-              <p className="text-lg">Şirket</p>
+              <p className="text-lg">Company</p>
             </div>
           </div>
         </motion.div>
@@ -71,19 +71,19 @@ const AboutPage = () => {
           <div className="what-we-do-cards mt-14 gap-8 max-md:grid-cols-1 max-md:grid-rows-3 grid grid-cols-3 grid-rows-1">
             <div>
               <h2 className="text-2xl text-red-500 font-semibold">
-              Mentorluk İlişkisinin Başlaması
+                Beginning of Mentoring Relationship
 
               </h2>
               <p className="text-xl mt-2">
-              Mentor ve mentee arasındaki ilişki, hedeflerin belirlenmesi ve bu yönde adımlar atılmasıyla başlar.
+                The relationship between mentor and mentee begins with setting goals and taking steps in this direction.
               </p>
             </div>
             <div>
               <h2 className="text-2xl text-red-500 font-semibold">
-              İletişim ve Görüşme Koşulları
+                Communication and Meeting Conditions
               </h2>
               <p className="text-xl mt-2">
-              Mentorluk ilişkisinde toplantıların ne zaman ve nasıl yapılacağına ilişkin prensipler belirlenir.
+                In the mentoring relationship, principles are determined regarding when and how meetings will be held.
               </p>
             </div>
             <div>
@@ -91,8 +91,8 @@ const AboutPage = () => {
               Mentor Seçimi
               </h2>
               <p className="text-xl mt-2">
-             
-              Mentor olacak kişi, mentee'nin hedeflerine ulaşmasında yardımcı olacak kişisel ve profesyonel özelliklere sahip olmalıdır.
+
+                The person who will be a mentor must have personal and professional characteristics that will help the mentee achieve her goals.
               </p>
             </div>
           </div>
@@ -111,10 +111,10 @@ const AboutPage = () => {
             className=" w-1/2 max-md:w-full flex flex-col text-white items-start justify-between max-md:items-center"
           >
             <h1 className="text-5xl font-bold title-font w-max">
-           Biz Kim miyiz?
+              Who are we?
             </h1>
             <p className="text-xl mt-5">
-            Uzman olduğu alanda yetkin, deneyimli ve iletişimi güçlü bir kişilerden oluşan bir aileyiz.
+              We are a family consisting of people who are competent, experienced and have strong communication skills in their field of expertise.
             </p>
           </motion.div>
 
@@ -160,9 +160,9 @@ const AboutPage = () => {
             </div>
 
             <div className=" w-1/2 text-5xl max-lg:text-4xl max-md:w-full ">
-              <h1 className="font-semibold ">Öncelliğimiz Sizsiniz</h1>
+              <h1 className="font-semibold ">You are our priority</h1>
               <h1 className="font-semibold  text-red-500">
-               VE HEP BERABERİZ!
+                AND WE ARE ALL TOGETHER!
               </h1>
             </div>
           </motion.div>
@@ -176,7 +176,7 @@ const AboutPage = () => {
             >
               <h2 className="title-font font-semibold">-01</h2>
               <h2 className="title-font mt-7  font-medium text-red-500">
-               BT & Telekom Projeleri
+                IT & Telecom Projects
               </h2>
               <Link onClick={scrollToTop} to={"/services"}>
                 <Button
@@ -196,7 +196,7 @@ const AboutPage = () => {
             >
               <h2 className="title-font font-semibold">-01</h2>
               <h2 className="title-font mt-7  font-medium text-red-500">
-               Kurumsal Proje Yönetimi
+                Corporate Project Management
               </h2>
               <Link onClick={scrollToTop} to={"/services"}>
                 <Button
@@ -216,7 +216,7 @@ const AboutPage = () => {
             >
               <h2 className="title-font font-semibold">-01</h2>
               <h2 className="title-font mt-7  font-medium text-red-500">
-                AR-GE & AB Projeleri Yönetimi
+                R&D & EU Projects Management
               </h2>
               <Link onClick={scrollToTop} to={"/services"}>
                 <Button
@@ -247,12 +247,12 @@ const AboutPage = () => {
             className="w-1/2 max-lg:w-2/3 max-md:w-full"
           >
             <h1 className="text-5xl ">
-            Zaman Her şeydir .<hr></hr>
-              <span className="text-red-500">Kaybetme!</span>
+              Time is Everything.<hr></hr>
+              <span className="text-red-500">don't lose!</span>
             </h1>
             <div className="flex flex-col gap-5 mt-7">
               <div className="flex justify-between items-center border-b-2 border-black/30 pb-5 text-2xl">
-                <h2>BT Projelerimiz</h2>
+                <h2>Our IT Projects</h2>
                 <Link
                   to={"/services"}
                   onClick={scrollToTop}
@@ -262,7 +262,7 @@ const AboutPage = () => {
                 </Link>
               </div>
               <div className="flex justify-between items-center border-b-2 border-black/30 pb-5 text-2xl">
-                <h2>Yönetim Sistemleri Danışmanlığı</h2>
+                <h2>Management Systems Consultancy</h2>
                 <Link
                   to={"/services"}
                   onClick={scrollToTop}
@@ -272,7 +272,7 @@ const AboutPage = () => {
                 </Link>
               </div>
               <div className="flex justify-between items-center border-b-2 border-black/30 pb-5 text-2xl">
-                <h2>Mentor Akademi</h2>
+                <h2>Mentor Academy</h2>
                 <Link
                   to={"/services"}
                   onClick={scrollToTop}
@@ -282,7 +282,7 @@ const AboutPage = () => {
                 </Link>
               </div>
               <div className="flex justify-between items-center border-b-2 border-black/30 pb-5 text-2xl">
-                <h2>Proje Yönetimi ve Seminerlerimiz</h2>
+                <h2>Our Project Management and Seminars</h2>
                 <Link
                   to={"/services"}
                   onClick={scrollToTop}

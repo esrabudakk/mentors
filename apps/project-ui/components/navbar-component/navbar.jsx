@@ -245,7 +245,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                             </div>
                         ) : (
                             <div className="p-20 flex justify-center items-center">
-                                <p className="text-xl">İçerik bulunamadı</p>
+                                <p className="text-xl">Content not found</p>
                             </div>
                         )}
                     </div>
@@ -285,14 +285,14 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                             className="hover:text-red-500 transition-all"
                             to="/"
                         >
-                            ANASAYFA
+                            HOME PAGE
                         </Link>
                         <Link
                             onClick={scrollToTop}
                             className="hover:text-red-500 transition-all"
                             to="/Services"
                         >
-                            KEŞFET
+                            CATEGORIES
                         </Link>
 
                         <Link
@@ -300,7 +300,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                             className="hover:text-red-500 transition-all"
                             to="/about"
                         >
-                            MENTOR NEDİR?
+                            WHAT IS A MENTOR?
                         </Link>
                         {isLogin && userRole === "ADMIN" && (
                             <Link
@@ -308,7 +308,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                                 className="hover:text-red-500 transition-all"
                                 to="/admin/customers"
                             >
-                                ADMİN
+                                ADMIN
                             </Link>
                         )}
 
@@ -336,7 +336,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                         {!isLogin && (
                             <Link onClick={scrollToTop} to="/keycloak-auth">
                                 <Button
-                                    content={"KAYDOL"}
+                                    content={"SIGN IN"}
                                     fontSize={"text-xl"}
                                     fontWeight={""}
                                     padding={"px-5  py-2"}
@@ -357,7 +357,7 @@ const NavBar = ({ navBar2, showCase1Page }) => {
                                 onClick={() => {
                                     openModal(<BeConsultantModal />);
                                 }}
-                                content={"Danisman Ol"}
+                                content={"Become a Consultant"}
                                 fontSize={"text-xl"}
                                 fontWeight={""}
                                 padding={"px-5  py-2"}

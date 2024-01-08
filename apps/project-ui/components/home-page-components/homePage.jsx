@@ -54,7 +54,7 @@ const HomePage = () => {
             variants={animationVariants.fadeLeft}
             className="text-6xl max-lg:mx-auto font-semibold max-sm:text-4xl max-w-lg "
           >
-            Yetenekli danışmanlarla büyüyün ve büyütün.
+            Grow and expand with talented advisors.
           </motion.h1>
           <motion.p
             variants={animationVariants.fadeLeft}
@@ -62,33 +62,6 @@ const HomePage = () => {
           >
 
           </motion.p>
-          <motion.div
-            variants={animationVariants.fadeLeft}
-            id="search-inp"
-            className="max-w-xl max-lg:mx-auto max-lg:w-full relative"
-          >
-            <FaPeriscope className="text-red-500 text-2xl absolute left-2 top-5 " />
-            <input
-              placeholder="Arama..."
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
-              autoComplete="off"
-              id="searchInp"
-              className="w-full py-5 pl-10 pr-32 text-black rounded-md focus:outline-none"
-              type="text"
-            />
-            <Button
-              content={"Arama"}
-              fontSize={"text-xl"}
-              padding={"px-5  py-2"}
-              furtherClasses={"absolute right-2"}
-              styles={{ top: 9.5 }}
-              onClick={handleSearch}
-            />
-          </motion.div>
           <motion.div
             variants={animationVariants.fadeLeft}
             className="flex max-lg:flex-col max-lg:items-center gap-10 w-full justify-between items-end mt-4"
@@ -114,7 +87,7 @@ const HomePage = () => {
               viewport={{ once: true, amount: 0.2 }}
             >
               <h2 className="text-5xl max-md:text-4xl font-bold title-font">
-                Dijital Danışmanlıkta
+                In Digital Consulting
                 <span className=" text-red-500 title-font "> NEDEN FREELANCER?</span>
               </h2>
             </motion.div>
@@ -127,16 +100,9 @@ const HomePage = () => {
               viewport={{ once: true, amount: 0.2 }}
             >
               <p className="text-xl">
-                Birçok freelancer çalışan kadromuzla iş sürecinizi profesyonel bir şekilde yönetmek için
+                To manage your business process professionally with our many freelance staff.
               </p>
-              <Link onClick={scrollToTop} to={"/about"}>
-                <Button
-                  content={"Hemen Başla"}
-                  fontSize={"text-xl"}
-                  padding={"px-5  py-2"}
-                  furtherClasses={"mt-8"}
-                />
-              </Link>
+
             </motion.div>
           </div>
         </div>
@@ -161,15 +127,14 @@ const HomePage = () => {
               variants={animationVariants.fadeLeft}
               className="text-5xl max-md:text-4xl font-semibold"
             >
-            “Dijitalleşen dünyada, freelancer olmak çok yükselen bir trend.
+              “In the digitalizing world, being a freelancer is a very rising trend.
 
             </motion.h1>
             <motion.p
               variants={animationVariants.fadeLeft}
               className="text-2xl"
             >
-            Karşılıklı soru-cevap ve sohbet eşliğinde, freelance çalışmaya ve her ne işte olursanız olun, kendi işinizi pazarlamaya ve müşteri bulmaya beraber başlayalım!”
-            </motion.p>
+              Let's start freelancing and marketing your own business and finding customers, whatever your business, with mutual questions and answers and chat!”            </motion.p>
             <motion.div
               variants={animationVariants.fadeLeft}
               className="grid grid-cols-2 grid-rows-2 gap-10"
@@ -179,7 +144,7 @@ const HomePage = () => {
                  5k+
                 </h2>
                 <p className="text-xl">
-                  Çalışan
+                  Worker
                 </p>
               </div>
               <div className="flex flex-col max-lg:justify-center max-lg:items-center">
@@ -187,7 +152,7 @@ const HomePage = () => {
                   100+
                 </h2>
                 <p className="text-xl">
-                  Şirket
+                  Company
                 </p>
               </div>
               <div className="flex flex-col max-lg:justify-center max-lg:items-center">
@@ -195,7 +160,7 @@ const HomePage = () => {
                   10k+
                 </h2>
                 <p className="text-xl">
-                  Yardım alan
+                  Receiving help
                 </p>
               </div>
               <div className="flex flex-col max-lg:justify-center max-lg:items-center">
@@ -203,7 +168,7 @@ const HomePage = () => {
                  25k+
                 </h2>
                 <p className="text-xl">
-                  Kullanıcı
+                  User
                 </p>
               </div>
             </motion.div>
@@ -258,7 +223,7 @@ const HomePage = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="text-5xl max-md:text-4xl font-semibold text-center  mb-16 max-md:mb-12"
         >
-          Müşteriler sıklıkla bunları soruyor
+          Customers often ask these
         </motion.h1>
         <motion.div
           initial="initial"
@@ -276,14 +241,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                    Neden bir mentöre ihtiyacım var?
+                      Why do I need a mentor?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                Bir mentör, deneyimleri ve bilgisiyle size rehberlik ederek, hedeflerinize daha hızlı ve etkili bir şekilde ulaşmanıza yardımcı olabilir. Ayrıca, kendi deneyimlerinden öğrenebileceğiniz değerli
-                </AccordionPanel>
+                  A mentor can help you achieve your goals faster and more effectively by guiding you with their experience and knowledge. Additionally, you can learn valuable things from your own experiences.                </AccordionPanel>
               </AccordionItem>
 
               <AccordionItem className="border-none box-shadow p-6">
@@ -294,15 +258,14 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                    Hangi alanlarda mentorluk hizmeti alabilirim?
-                    </Box>
+                      In which areas can I receive mentoring service?                    </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                Mentorluk genellikle kariyer, BT, girişimcilik,AR-GE 
-                 ve kişisel gelişim gibi birçok alanda hizmet sunulabilir.
-                  İhtiyaçlarınıza ve hedeflerinize bağlı olarak farklı alanlarda mentörlük hizmeti alabilirsiniz.
+                  Mentoring is generally career, IT, entrepreneurship, R&D
+                  Services can be provided in many areas such as personal development and personal development.
+                  Depending on your needs and goals, you can receive mentoring services in different areas.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem className="border-none box-shadow p-6">
@@ -313,14 +276,14 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                    Mentorluk süreci nasıl işler?
+                      How does the mentoring process work?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                Mentörlük süreci genellikle düzenli toplantılar, hedef belirleme ve ilerlemenin takibi gibi unsurları içerir. 
-                Mentor ve menti
+                  The mentoring process often includes elements such as regular meetings, goal setting, and tracking progress.
+                  Mentor and mentee
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem className="border-none box-shadow p-6">
@@ -331,13 +294,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                    Nasıl bir mentör seçmeliyim?
+                      What kind of mentor should I choose?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                Mentör seçerken kariyer hedeflerinizle uygun,işinde profesyonel ve sizi ileriye taşıyabileceğinizi düşündüğünüz.
+                  When choosing a mentor, choose one that suits your career goals, is professional in her job, and that you think can take you forward.
                 </AccordionPanel>
               </AccordionItem>
             </div>
@@ -350,13 +313,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                    Mentorluk hizmeti ücretli mi?
+                      Is mentoring service paid?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                 Evet.Herhangi bir konuda danışmanlık hizmeti almak için ücret ödemelisiniz.Ücretler minimum ve maksimum tarifelerle size en uygun olanını seçmenize yardımcı olacaktır.
+                  Yes. You must pay a fee to receive consultancy services on any subject. The fees will help you choose the one that suits you best with minimum and maximum tariffs.
                 </AccordionPanel>
               </AccordionItem>
 
@@ -368,13 +331,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                      Danışmanlarla nasıl iletişime geçeceğim?
+                      How do I contact consultants?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Danışmanlarla iletişime geçmek için ilk önce kayıt olmanız gerekiyor. Seçeceğiniz konu ve danışman için ödeme yaptığınızda bir iletişim ekranı çıkacaktır.
+                  To contact consultants, you must first register. When you pay for the subject and consultant you choose, a contact screen will appear.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem className="border-none box-shadow p-6">
@@ -385,13 +348,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                      Danışmanlık almak istemezsem ücret iadesi alabilecek miyim?
+                      If I do not want to receive consultancy, will I be able to get a refund?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                 Evet.İlk 24 saat için ücretin vergilendirme ve aracı kuruluş finansı hariç alabilirsiniz.
+                  Yes. You can receive the fee for the first 24 hours, excluding taxation and intermediary finance.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem className="border-none box-shadow p-6">
@@ -402,13 +365,13 @@ const HomePage = () => {
                     _expanded={{ color: "#ef4444" }}
                   >
                     <Box as="span" flex="1" textAlign="left">
-                      Danışmanlık aldığım alanı değiştirebilir miyim?
+                      Can I change the field in which I receive consultancy?
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                 Evet.Bir defaya mahsus olarak başka bir danışmanlık hizmeti alabilirsiniz.
+                  Yes. You can receive another consultancy service only once.
                 </AccordionPanel>
               </AccordionItem>
             </div>
