@@ -4,6 +4,7 @@ import { inject } from "@loopback/core";
 import { UserServiceBindings } from "../keys";
 import { Companies, Users } from "../models";
 import { ModelStatus } from "../models/models-utils";
+import {RoleNames} from "./user.service";
 
 
 
@@ -11,6 +12,10 @@ export class CompaniesService {
     constructor(
         @repository(CompaniesRepository)
         public companiesRepository: CompaniesRepository,
+        @repository(UserRolesRepository)
+        public userRolesRepository : UserRolesRepository,
+        @repository(RolesRepository)
+        public rolesRepository: RolesRepository,
         @inject(UserServiceBindings.USER) public user: Users
     ) {
     }
@@ -26,6 +31,17 @@ export class CompaniesService {
             createdAt: new Date().toISOString(),
             createdBy: this.user.id
         })
+
+        const foundRole = await this.rolesRepository.findOne({
+            where: {roleName: RoleNames.CONSULTANT}
+        });
+        if (!foundRole)
+            throw new Error('Role not found')
+
+        await this.userRolesRepository.updateAll(
+            { roleId: foundRole.id },
+            { userId: this.user.id }
+        );
         return createdCompany;
     }
 
